@@ -3,6 +3,7 @@ var app = express(); //Gọi thư viện để sử dụng
 app.use(express.static("public")); //Mặc định thư mục ban đầu là public
 app.set("view engine", "ejs"); //Sử dụng ejs
 app.set("views", "./views"); //Thư mục views để chứa các ejs...
+
 app.listen(3000); //Port  
 
 var pg = require("pg");
@@ -72,11 +73,13 @@ app.get("/index.html", function(req,res)
 })
 
 
+
 app.get("/shop.html", function(req,res){
     pool.connect(function(err, client, done){
         if(err){
             return console.error('error fetching client from pool', err);
         }
+        
         client.query('select * from book', function(err, result){
             done();
             if(err){
@@ -86,6 +89,24 @@ app.get("/shop.html", function(req,res){
         });
     });
 });
+
+app.get("/shop.html/page/:id", function(req,res){
+    var id = req.params.id;
+    var offset = (id-1)*20;
+    pool.connect(function(err, client, done){
+        if(err){
+            return console.error('error fetching client from pool', err);
+        }
+        
+        client.query("select * from book offset '" + offset + "' limit 20 ", function(err, result){
+            done();
+            if(err){
+                return console.error('error running query', err);
+            }
+            res.render("shop_page.ejs",{data:result});
+        });
+    });
+ });
 
 app.get("/admin", function(req,res){
     pool.connect(function(err, client, done){
@@ -231,9 +252,4 @@ app.get("/about.html", function(req,res){
 
 app.get("/faq.html", function(req,res){
     res.render("faq");
-});
-
-app.post("/shop.html?page=:id", function(req,res){
-    var id=req.params.id;
-    res.send("<h1>" + id + "</h1>");
 });

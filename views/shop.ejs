@@ -109,7 +109,7 @@
             <div class="recent-book-sec">
                 <div class="row">
                     <%var i=1; data.rows.forEach(function(item){ %>
-                        <% if(i<26) {%>
+                        <% if(i<21) {%>
                         <%i=i+1;%>
                         <div class="col-md-3">
                             <div class="item">
@@ -122,28 +122,18 @@
                     <%})%>
                     
                 </div>
-                <!-- <div class="btn-sec">
-                    <form>
-                        <button type="submit" class="btn btn-default" id="page" name="page">Submit</button>
-                    </form>
-                    <button class="btn gray-btn">Xem thêm</button>
-                    
-                </div> -->
                 <form action="" >
                     <div class="pagination-wrapper">
                         <div class="pagination">
-                          <a class="prev page-numbers" href="javascript:;">Prev</a>
-                          <span aria-current="page" class="page-numbers current">1</span>
-                          <a class="page-numbers" href="2">2</a>
-                          <a class="page-numbers" href="3">3</a>
-                          <a class="page-numbers" href="4">4</a>
-                          <a class="page-numbers" href="5">5</a>
-                          <a class="page-numbers" href="6">6</a>
-                          <a class="page-numbers" href="7">7</a>
-                          <a class="page-numbers" href="8">8</a>
-                          <a class="page-numbers" href="9">9</a>
-                          <a class="page-numbers" href="10">10</a>
-                          <a class="next page-numbers" href="javascript:;">Next</a>
+                          <!-- <a class="prev page-numbers" href="javascript:;">Prev</a> -->
+                          <a href="shop.html/page/1" type="submit" class="btn btn-default">1</a>
+                          <a href="shop.html/page/2" type="submit" class="btn btn-default">2</a>
+                          <a href="shop.html/page/3" type="submit" class="btn btn-default">3</a>
+                          <a href="shop.html/page/4" type="submit" class="btn btn-default">4</a>
+                          <a href="shop.html/page/5" type="submit" class="btn btn-default">5</a>
+                          <!-- <button type="submit" class="btn btn-default" id="page" name="page" value=1 >1</button> -->
+                          <!-- <a class="next page-numbers" href="javascript:;">Next</a> -->
+
                         </div>
                       </div>
                 </div>
@@ -233,6 +223,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/owl.carousel.min.js"></script>
     <script src="js/custom.js"></script>
+    
 </body>
 
 </html>
