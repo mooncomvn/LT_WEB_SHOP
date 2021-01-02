@@ -125,12 +125,16 @@
                 <form action="" >
                     <div class="pagination-wrapper">
                         <div class="pagination">
+                            <% for(var i=1; i<(page+1); i++)
+                            { %>
+                                <a href="shop.html/page/<%- i %>" type="submit" class="btn btn-default"><%- i %></a>
+                            <%}%>
                           <!-- <a class="prev page-numbers" href="javascript:;">Prev</a> -->
-                          <a href="shop.html/page/1" type="submit" class="btn btn-default">1</a>
+                          <!-- <a href="shop.html/page/1" type="submit" class="btn btn-default">1</a>
                           <a href="shop.html/page/2" type="submit" class="btn btn-default">2</a>
                           <a href="shop.html/page/3" type="submit" class="btn btn-default">3</a>
                           <a href="shop.html/page/4" type="submit" class="btn btn-default">4</a>
-                          <a href="shop.html/page/5" type="submit" class="btn btn-default">5</a>
+                          <a href="shop.html/page/5" type="submit" class="btn btn-default">5</a> -->
                           <!-- <button type="submit" class="btn btn-default" id="page" name="page" value=1 >1</button> -->
                           <!-- <a class="next page-numbers" href="javascript:;">Next</a> -->
 

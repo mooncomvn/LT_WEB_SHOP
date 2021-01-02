@@ -85,7 +85,9 @@ app.get("/shop.html", function(req,res){
             if(err){
                 return console.error('error running query', err);
             }
-            res.render("shop.ejs",{data:result});
+            var number_book = result.rowCount;
+            var number_page = (number_book/20);
+            res.render("shop.ejs",{data:result, page:number_page});
         });
     });
 });
@@ -97,13 +99,16 @@ app.get("/shop.html/page/:id", function(req,res){
         if(err){
             return console.error('error fetching client from pool', err);
         }
-        
-        client.query("select * from book offset '" + offset + "' limit 20 ", function(err, result){
-            done();
-            if(err){
-                return console.error('error running query', err);
-            }
-            res.render("shop_page.ejs",{data:result});
+        client.query('select * from book', function(err,count){
+            client.query("select * from book offset '" + offset + "' limit 20 ", function(err, result){
+                done();
+                if(err){
+                    return console.error('error running query', err);
+                }
+                var number_book = count.rowCount;
+                var number_page = (number_book/20);
+                res.render("shop_page.ejs",{data:result, page:number_page});
+            });
         });
     });
  });
