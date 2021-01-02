@@ -19,7 +19,8 @@
   <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"></script>
-    
+  <script src="/js/search.js"></script>
+  <link rel="stylesheet" href="/css/search.css">
   <style>
      tr td img {
           width: 100px ;
@@ -86,6 +87,29 @@
         </div>
     </header>
     
+
+<!-- <table id="myTable">
+  <tr class="header">
+    <th style="width:60%;">Name</th>
+    <th style="width:40%;">Country</th>
+  </tr>
+  <tr>
+    <td>Alfreds Futterkiste</td>
+    <td>Germany</td>
+  </tr>
+  <tr>
+    <td>Berglunds snabbkop</td>
+    <td>Sweden</td>
+  </tr>
+  <tr>
+    <td>Island Trading</td>
+    <td>UK</td>
+  </tr>
+  <tr>
+    <td>Koniglich Essen</td>
+    <td>Germany</td>
+  </tr>
+</table> -->
     <section class="recomended-sec">
         <div class="container">
             <div class="title">
@@ -93,9 +117,10 @@
                 <hr>
                 <br>
             </div>
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for anything...">
             <div class="row">
                 <div class="col-md-12">
-                    <table id="table_book" class="table table-hover table-bordered">
+                    <table id="myTable" class="table table-hover table-bordered">
                         <thead>
                             <tr class="bg-primary">
                                 <th class="text-light">STT</th>

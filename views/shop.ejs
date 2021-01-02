@@ -12,6 +12,12 @@
     <link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="/css/pagination.css">
+    <script src="/js/search.js"></script>
+    <link rel="stylesheet" href="/css/search.css">
+
+    <script>
+        
+    </script>
     <style>
         .recomended-sec img {
            width: 120px ;
@@ -21,7 +27,39 @@
            width: 180px ;
            height: auto;
          }
-         </style>
+    </style>
+    <script>
+        $( function() {
+          var availableTags = [
+            "ActionScript",
+            "AppleScript",
+            "Asp",
+            "BASIC",
+            "C",
+            "C++",
+            "Clojure",
+            "COBOL",
+            "ColdFusion",
+            "Erlang",
+            "Fortran",
+            "Groovy",
+            "Haskell",
+            "Java",
+            "JavaScript",
+            "Lisp",
+            "Perl",
+            "PHP",
+            "Python",
+            "Ruby",
+            "Scala",
+            "Scheme"
+          ];
+          $( "#tags" ).autocomplete({
+            source: availableTags
+          });
+        } );
+        </script>
+
 </head>
 
 <body>
@@ -68,6 +106,10 @@
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
                             
                         </div>
+                        <div class="ui-widget">
+                            <label for="tags">Tags: </label>
+                            <input id="tags">
+                          </div>
                         <form class="form-inline my-2 my-lg-0">
                             <input class="form-control mr-sm-2" type="search" placeholder="Search here..." aria-label="Search">
                             <span class="fa fa-search"></span>
