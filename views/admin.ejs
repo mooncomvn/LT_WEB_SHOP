@@ -130,6 +130,7 @@
                                 <th class="text-light">STT</th>
                                 <th class="text-light">ID</th>
                                 <th class="text-light">Name</th>
+                                <th class="text-light">Author</th>
                                 <th class="text-light">Image</th>
                                 <th class="text-light">Price</th>
                                 <th class="text-light">Type</th>
@@ -144,8 +145,9 @@
                                     <td><%= i %></td>
                                     <td><%= item.id %></td>
                                     <td><%= item.name %></td>
+                                    <td><%= item.author%></td>
                                     <td><img src="../upload/<%= item.image %>"></td>
-                                    <td><%= %></td>
+                                    <td><%= item.cur_cost%></td>
                                     <td><%= item.type %></td>
                                     <td><%= item.categ %></td>
                                     <td><a href="edit/<%- item.id %>"><span class="fas fa-edit">Edit</span></a> - <a onclick="return confirm('Are you sure delete?')" href="delete/<%- item.id %>"><i class="fas fa-trash-alt">Delete</i></a></td>

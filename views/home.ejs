@@ -145,8 +145,8 @@
                                 <div class="col-lg-3 col-md-6">
                                     <div class="item">
                                         <img src="upload/<%= item.image %>" alt="img">
-                                        <h3><a href="#"><%= item.name %></a></h3>
-                                        <h6><span class="price"><%- item.cur_cost %></span> / <a href="#">Buy Now</a></h6>
+                                        <h3><a href="product/<%= item.id %>"><%= item.name %></a></h3>
+                                        <h6><span class="price"><%- item.cur_cost %></span> / <a href="product/<%= item.id %>">Buy Now</a></h6>
                                     </div>
                                 </div>
                         <%}%>
@@ -183,8 +183,8 @@
                         <div class="col-lg-2 col-md-3 col-sm-4">
                             <div class="item">
                                 <img src="upload/<%= item.image %>" alt="img">
-                                <h3><a href="#"><%= item.name %></a></h3>
-                                <h6><span class="price"><%- item.cur_cost %></span> / <a href="#">Buy Now</a></h6>
+                                <h3><a href="product/<%= item.id %>"><%= item.name %></a></h3>
+                                <h6><span class="price"><%- item.cur_cost %></span> / <a href="product/<%= item.id %>">Buy Now</a></h6>
                             </div>
                         </div>
                     <%}%>
