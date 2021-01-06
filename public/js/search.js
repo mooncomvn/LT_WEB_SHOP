@@ -27,3 +27,14 @@ $(document).ready(function(){
     });
 });
 
+$(document).ready(function(){
+    $('#myInput2').on('keyup', function(event){
+        event.preventDefault();
+        var key2 = $(this).val().toLowerCase();
+        $('#myTable2 div').filter(function(){
+            $(this).toggle($(this).text().toLowerCase().indexOf(key2) > -1);
+        });
+    });
+});
+
+

@@ -258,3 +258,30 @@ app.get("/about.html", function(req,res){
 app.get("/faq.html", function(req,res){
     res.render("faq");
 });
+
+app.get("/login.html", function(req,res){
+    res.render("login");
+});
+
+app.get("/register.html", function(req,res){
+    res.render("register");
+});
+
+app.get("/product/:id", function(req,res){
+    var id = req.params.id;
+    pool.connect(function(err, client, done){
+        if(err){
+            return console.error('error fetching client from pool', err);
+        }
+        client.query('select * from book', function(err,count){
+            client.query('select * from book where id =' + id, function(err, result){
+                done();
+                if(err){
+                    return console.error('error running query', err);
+                }
+                res.render("product-single",{data:result.rows[0], data2:count});
+            });
+        });
+        
+    });
+});
