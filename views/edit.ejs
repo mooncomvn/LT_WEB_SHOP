@@ -16,6 +16,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://kit.fontawesome.com/4e5ceaba89.js" crossorigin="anonymous"></script>   
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <style>
      tr td img {
           width: 100px ;
@@ -102,7 +103,8 @@
                         <div class="form-group col-md-2">
                             <label for="form-title">Type:</label>
                             <br>
-                            <select id="type" name="type">
+                            <select id="type" name="type" value="<%- data.type %>">
+                                <option value="<%- data.type %>"><%- data.type %></option>
                                 <option value="New">New</option>
                                 <option value="Best">Best</option>
                                 <option value="Sale">Sale</option>
@@ -123,7 +125,21 @@
                             
                             <div class="form-group col-md-4">
                                 <label for="form-title">Categ:</label>
-                                <input type="text" class="form-control" id="categ" name="categ" value="<%- data.categ %>">
+                                <br>
+                                <select id="categ" name="categ">
+                                    <option value="<%- data.categ %>"><%- data.categ %></option>
+                                    <option value="Kinh tế">Kinh tế</option>
+                                    <option value="Kỹ năng sống">Kỹ năng sống</option>
+                                    <option value="Kinh dị">Kinh dị</option>
+                                    <option value="Lịch sử">Lịch sử</option>
+                                    <option value="Tiểu thuyết">Tiểu thuyết</option>
+                                    <option value="Ngoại ngữ">Ngoại ngữ</option>
+                                    <option value="Thiếu nhi">Thiếu nhi</option>
+                                    <option value="Văn học">Văn học</option>
+                                    <option value="Y học">Y học</option>
+                                    <option value="Truyện tranh">Truyện tranh</option>
+                                </select>
+                                <!-- <input type="text" class="form-control" id="categ" name="categ" value="<%- data.categ %>"> -->
                             </div>
                     </div>
 

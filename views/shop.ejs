@@ -44,7 +44,24 @@
   <link rel="stylesheet" href="/css/search.css">
   <link rel="stylesheet" href="../../css/styles.css">
   <link rel="stylesheet" href="../../css/pagination.css">
-
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <script>
+    function openLeftMenu() {
+      document.getElementById("leftMenu").style.display = "block";
+    }
+    
+    function closeLeftMenu() {
+      document.getElementById("leftMenu").style.display = "none";
+    }
+    
+    function openRightMenu() {
+      document.getElementById("rightMenu").style.display = "block";
+    }
+    
+    function closeRightMenu() {
+      document.getElementById("rightMenu").style.display = "none";
+    }
+    </script>
     <style>
         .recomended-sec img {
            width: 120px ;
@@ -106,17 +123,38 @@
             </div>
         </div>
     </header>
+    <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="leftMenu">
+        <button onclick="closeLeftMenu()" class="w3-bar-item w3-button w3-large text-danger">Close &times;</button>
+        <h3 class="text-primary w3-bar-item">DANH MỤC SẢN PHẨM</h3>
+        <hr>
+        <a href="shop.html/1" class="w3-bar-item w3-button">Kinh tế</a>
+        <a href="shop.html/2" class="w3-bar-item w3-button">Kỹ năng sống</a>
+        <a href="shop.html/3" class="w3-bar-item w3-button">Kinh dị</a>
+        <a href="shop.html/4" class="w3-bar-item w3-button">Lịch sử</a>
+        <a href="shop.html/5" class="w3-bar-item w3-button">Tiểu thuyết</a>
+        <a href="shop.html/6" class="w3-bar-item w3-button">Ngoại ngữ</a>
+        <a href="shop.html/7" class="w3-bar-item w3-button">Thiếu nhi</a>
+        <a href="shop.html/8" class="w3-bar-item w3-button">Văn học</a>
+        <a href="shop.html/9" class="w3-bar-item w3-button">Y học</a>
+        <a href="shop.html/10" class="w3-bar-item w3-button">Truyện tranh</a>
+        <hr>
+      </div>
+      
     <div class="breadcrumb">
         <div class="container">
             <a class="breadcrumb-item" href="index.html">Home</a>
             <span class="breadcrumb-item active">Shop</span>
         </div>
     </div>
-    
+    <div class="w3-teal">
+        <button class="w3-button w3-teal w3-xlarge w3-left" onclick="openLeftMenu()">&#9776;</button>
+      </div>
     <section class="static about-sec">
         <div class="container">
             <input type="text" id="myInput2" onkeyup="myFunction()" placeholder="Search for anything...">
-            <h2>new releases</h2>
+            <div class="row">
+                <div class="col-md-3"><h2>new releases</h2></div>
+            </div>
             <div class="recomended-sec">
                 <div class="row">
                     <% var i=1; data.rows.forEach(function(item){ %>
@@ -127,7 +165,7 @@
                                     <div class="item">
                                         <img src="upload/<%= item.image %>" alt="img">
                                         <h3><a href="product/<%- item.id %>"><%= item.name %></a></h3>
-                                        <h6><span class="price"><%- item.cur_cost %></span> / <a href="<%- item.id %>">Buy Now</a></h6>
+                                        <h6><span class="price"><%- item.cur_cost %></span> / <a href="product/<%- item.id %>">Buy Now</a></h6>
                                     </div>
                                 </div>
                         <%}%>
@@ -136,7 +174,9 @@
                 </div>
 
             </div>
-            <h2>All Book</h2>
+            <div class="row">
+                <div class="col-md-3"><h2>All Book</h2></div>
+            </div>
             <div class="recent-book-sec">
                 <div id="myTable2"  class="row">
                     <%var i=1; data.rows.forEach(function(item){ %>
@@ -146,7 +186,7 @@
                             <div class="item">
                                 <img src="upload/<%- item.image %>" alt="img">
                                 <h3><a href="product/<%- item.id %>"><%- item.name %></a></h3>
-                                <h6><span class="price"><%- item.cur_cost %></span> / <a href="<%- item.id %>">Buy Now</a></h6>
+                                <h6><span class="price"><%- item.cur_cost %></span> / <a href="product/<%- item.id %>">Buy Now</a></h6>
                             </div>
                         </div>
                         

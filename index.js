@@ -291,39 +291,56 @@ app.get("/product/:id", function(req,res){
 });
 
 
-
-
-
-// -----------------------------LOGIN SIGN UP---------------------------
-
-const sequelize = require('sequelize'); //Seqielize là thư viện thêm vào để tạo hệ thống đăng nhập, đăng ký
-const db = new sequelize({
-    database: 'book_shop',
-    username: 'postgres',
-    password: '0918303693',
-    host: 'localhost',
-    port: '5432',
-    dialect: 'postgres',
-    dialectOptions: {
-        ssl: false
-    },
-    define: {
-        freezeTableName: true
-    },
+app.get("/shop.html/:id", function(req,res){
+    var categ = req.params.id;
+    pool.connect(function(err, client, done){
+        if(err){
+            return console.error('error fetching client from pool', err);
+        }
+        client.query('select * from book', function(err, result){
+            done();
+                if(err){
+                    return console.error('error running query', err);
+                }
+                res.render("shop_categ",{data:result, categ_data:categ});
+        });
+        
+    });
 });
 
-db.authenticate()
-.then(() => console.log('Ket noi thanh cong'))
-.catch(err => console.log(err.message))
 
-const user = db.define('user',{
-    username: sequelize.STRING,
-    password: sequelize.STRING,
-})
 
-db.sync()
 
-user.bulkCreate({
-    username: 'admin',
-    password: 'admin1234'
-}).then(user => console.log(user.get({plain: true})))
+// // -----------------------------LOGIN SIGN UP---------------------------
+
+// const sequelize = require('sequelize'); //Seqielize là thư viện thêm vào để tạo hệ thống đăng nhập, đăng ký
+// const db = new sequelize({
+//     database: 'book_shop',
+//     username: 'postgres',
+//     password: '0918303693',
+//     host: 'localhost',
+//     port: '5432',
+//     dialect: 'postgres',
+//     dialectOptions: {
+//         ssl: false
+//     },
+//     define: {
+//         freezeTableName: true
+//     },
+// });
+
+// db.authenticate()
+// .then(() => console.log('Ket noi thanh cong'))
+// .catch(err => console.log(err.message))
+
+// const user = db.define('user',{
+//     username: sequelize.STRING,
+//     password: sequelize.STRING,
+// })
+
+// db.sync()
+
+// user.bulkCreate({
+//     username: 'admin',
+//     password: 'admin1234'
+// }).then(user => console.log(user.get({plain: true})))
