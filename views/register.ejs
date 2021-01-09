@@ -93,6 +93,7 @@
 			</div>
 		</div>
     </header>
+
     <div class="container h-100">
 		<div class="d-flex justify-content-center h-100">
 			<div class="user_card">
@@ -102,45 +103,43 @@
 					</div>
 				</div>
 				<div class="d-flex justify-content-center form_container">
-					<form>
-            <div class="input-group mb-3">
+					<form action="/register.html" role="form" method="POST">
+                        <div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-envelope"></i></span>
 							</div>
-							<input type="text" name="" class="form-control input_user" value="" placeholder="email">
+							<input type="email" id="email" name="email" class="form-control" placeholder="email" required>
 						</div>
 						<div class="input-group mb-3">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="text" name="" class="form-control input_user" value="" placeholder="username">
+							<input type="text" id="name" name="name" class="form-control" placeholder="username" required>
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="password" name="" class="form-control input_pass" value="" placeholder="password">
-            </div>
-            
-						<div class="form-group">
-							<div class="custom-control custom-checkbox">
-								<input type="checkbox" class="custom-control-input" id="customControlInline">
+							<input type="password" name="password" id="password" class="form-control" placeholder="password" required>
+                        </div>
+                        <div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-						</div>
-							<div class="d-flex justify-content-center mt-3 login_container">
-				 	<button type="button" name="button" class="btn login_btn">Sign Up</button>
-				   </div>
+							<input type="password" name="password2" id="password2" class="form-control" placeholder="confirm password" required>
+                        </div>
+                        <div class="d-flex justify-content-center text-danger">
+                            <% if(typeof mess != 'undefined') { %>
+                                <p><%- mess %> </p>
+                            <%}%>
+                        </div>
+						<div class="d-flex justify-content-center mt-1 login_container">
+				 	        <button type="submit" name="button" class="btn login_btn" value="register" >Sign Up</button>
+                        </div>
+                        <a class="text-primary d-flex justify-content-center" href="/login.html">Already registered? Login here!!!</a>
 					</form>
 				</div>
-		
-				<!-- <div class="mt-4">
-					<div class="d-flex justify-content-center links">
-						Don't have an account? <a href="#" class="ml-2">Sign Up</a>
-					</div>
-					<div class="d-flex justify-content-center links">
-						<a href="#">Forgot your password?</a>
-					</div>
-				</div> -->
+	
 			</div>
 		</div>
 	</div>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Book Store Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#03a6f3">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/4e5ceaba89.js" crossorigin="anonymous"></script>   
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <style>
+    .avatar {
+      vertical-align: middle;
+      width: 27px;
+      height: 27px;
+      border-radius: 50%;
+    }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3"><a href="#" class="web-url">www.bookstore.com</a></div>
+                    <div class="col-md-6">
+                        </div>
+                    <div class="col-md-3">
+                        <span class="ph-number">Call : 800 1234 5678</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-menu">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="navbar-brand" href="../index.html/<%- char.id %>"><img src="../../images/logo.png" alt="logo"></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="navbar-item">
+                                <a href="../index.html/<%- char.id %>" class="nav-link">Home</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="../shop.html/<%- char.id %>" class="nav-link">Shop</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="../about.html/<%- char.id %>" class="nav-link">About</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="../faq.html/<%- char.id %>" class="nav-link">FAQ</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="../dashboard/<%- char.id %>"><img src="/upload/<%- char.image %>" alt="Avatar" class="avatar"></a>
+                                
+                            </li>
+                            <li class="navbar-item">
+                                <a href="../../login.html" class="nav-link">Logout</a>
+                            </li>
+                            
+                        </ul>
+
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div class="container">
+            <div class="title recomended-sec" >
+                <h2>Dash Board</h2>
+                <hr>
+            </div>
+            <section class="product-sec">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 slider-sec">
+                            <!-- main slider carousel -->
+                            <div id="myCarousel" class="carousel slide">
+                                <!-- main slider carousel items -->
+                                <div class="carousel-inner">
+                                    <div class="active item carousel-item" data-slide-number="0">
+                                        <img src="/upload/<%- char.image %>" class="img-fluid">
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <!--/main slider carousel-->
+                        </div>
+                        <div class="col-md-6 slider-content">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form action="<%- char.id %>" method="POST" role="form" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label for="form-title">Name:</label>
+                                                <input type="text" class="form-control" id="name" name="name" value="<%- char.name %>">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="form-title">Phone:</label>
+                                                <input type="number" class="form-control" id="phone" name="phone" value="<%- char.phone %>">
+                                            </div>
+                                        
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-8">
+                                                <label for="form-key">Email:</label>
+                                                <input type="text" class="form-control" id="email" name="email" value="<%- char.email %>"> 
+                                            </div>
+                                            
+                                        </div>
+                                       
+                                        <div class="form-group">
+                                            <label for="">Image:</label>
+                                            <input type="file" class="form-control" id="image" name="image">
+                                        </div>
+                                        <br>
+                                        <button type="submit" class="btn btn-primary d-flex justify-content-center">Update</button>
+                                        <!-- <div class="text-center"><button type="submit" class="btn btn-primary">Submit</button></div> -->
+                                    </form>
+
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+    </section>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="address">
+                        <h4>Our Address</h4>
+                        <h6>The BookStore Theme, 4th Store
+                        Beside that building, USA</h6>
+                        <h6>Call : 800 1234 5678</h6>
+                        <h6>Email : info@bookstore.com</h6>
+                    </div>
+                    <div class="timing">
+                        <h4>Timing</h4>
+                        <h6>Mon - Fri: 7am - 10pm</h6>
+                        <h6>​​Saturday: 8am - 10pm</h6>
+                        <h6>​Sunday: 8am - 11pm</h6>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="navigation">
+                        <h4>Navigation</h4>
+                        <ul>
+                            <li><a href="../index.html/<%- char.id %>">Home</a></li>
+                            <li><a href="../about.html/<%- char.id %>">About Us</a></li>
+                            <li><a href="../shop.html/<%- char.id %>">Products</a></li>
+                        </ul>
+                    </div>
+                    <div class="navigation">
+                        <h4>Help</h4>
+                        <ul>
+                            <li><a href="../faq.html/<%- char.id %>">FAQ’s</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form">
+                        <h3>Liên hệ với chúng tôi</h3>
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input placeholder="Name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" placeholder="Email" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <textarea placeholder="Messege"></textarea>
+                                </div>
+                                <div class="col-md-12">
+                                    <button class="btn black">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copy-right">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>(C) 2017. All Rights Reserved. BookStore Wordpress Theme</h5>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="share align-middle">
+                            <span class="fb"><i class="fa fa-facebook-official"></i></span>
+                            <span class="instagram"><i class="fa fa-instagram"></i></span>
+                            <span class="twitter"><i class="fa fa-twitter"></i></span>
+                            <span class="pinterest"><i class="fa fa-pinterest"></i></span>
+                            <span class="google"><i class="fa fa-google-plus"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script src="js/custom.js"></script>
+</body>
+
+</html>
+
