@@ -2,8 +2,18 @@
 <html lang="en">
 
 <head>
+    <!-- <meta charset="UTF-8">
+    <title>Book Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#03a6f3">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
     <meta charset="UTF-8">
-    <title>Book Store Admin</title>
+    <title>Book Store</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#03a6f3">
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
@@ -11,19 +21,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/owl.carousel.min.css">
     <link rel="stylesheet" href="../../css/styles.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="https://kit.fontawesome.com/4e5ceaba89.js" crossorigin="anonymous"></script>   
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <style>
-    .avatar {
-      vertical-align: middle;
-      width: 27px;
-      height: 27px;
-      border-radius: 50%;
-    }
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        #logo{
+            width: 300px;
+            height: auto;
+        }
     </style>
 </head>
 
@@ -33,8 +36,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3"><a href="#" class="web-url">www.bookstore.com</a></div>
-                    <div class="col-md-6">
-                        </div>
+                    <div class="col-md-6"></div>
                     <div class="col-md-3">
                         <span class="ph-number">Call : 800 1234 5678</span>
                     </div>
@@ -44,32 +46,30 @@
         <div class="main-menu">
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
-                    <a class="navbar-brand" href="../index.html/<%- char.id %>"><img src="../../images/logo.png" alt="logo"></a>
+                    <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="logo"></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
                             <li class="navbar-item">
-                                <a href="../index.html/<%- char.id %>" class="nav-link">Home</a>
+                                <a href="index.html" class="nav-link">Home</a>
                             </li>
                             <li class="navbar-item">
-                                <a href="../shop.html/<%- char.id %>" class="nav-link">Shop</a>
+                                <a href="shop.html" class="nav-link">Shop</a>
+                            </li>
+                            <li class="navbar-item active">
+                                <a href="about.html" class="nav-link">About</a>
                             </li>
                             <li class="navbar-item">
-                                <a href="../about.html/<%- char.id %>" class="nav-link">About</a>
+                                <a href="faq.html" class="nav-link">FAQ</a>
                             </li>
                             <li class="navbar-item">
-                                <a href="../faq.html/<%- char.id %>" class="nav-link">FAQ</a>
+                                <a href="login.html" class="nav-link">Login</a>
                             </li>
                             <li class="navbar-item">
-                                <a href="../dashboard/<%- char.id %>"><img src="/upload/<%- char.image %>" alt="Avatar" class="avatar"></a>
-                                
+                                <a href="register.html" class="nav-link">Sign Up</a>
                             </li>
-                            <li class="navbar-item">
-                                <a href="../../login.html" class="nav-link">Logout</a>
-                            </li>
-                            
                         </ul>
 
                     </div>
@@ -77,70 +77,28 @@
             </div>
         </div>
     </header>
-    <section>
+    <div class="breadcrumb">
         <div class="container">
-            <div class="title recomended-sec" >
-                <h2>DashBoard</h2>
-                <hr>
+            <a class="breadcrumb-item" href="index.html">Home</a>
+            <span class="breadcrumb-item active">About</span>
+        </div>
+    </div>
+    <section class="static about-sec">
+        <div class="container">
+            <h1>About Us</h1>
+            <div class="img-sec">
+                <img id="logo" src="images/bookstore_logo.jpg" alt="about">
+                <p>BookStore là một hệ sinh thái thương mại tất cả trong một, gồm các công ty thành viên như:</p>
+                <li>BookStoreNOW Smart Logistics cung cấp dịch vụ logistics đầu-cuối;</li>
+                <li>BookStorebox mang đến dịch vụ vé sự kiện, xem phim hàng đầu;</li>
+                <li>Đơn vị bán lẻ BookStore Trading và Sàn Giao dịch cung cấp 10 triệu sản phẩm từ 26 ngành hàng phục vụ hàng triệu khách hàng trên toàn quốc.</li>
+                <br>
+                <p>Với phương châm hoạt động “Tất cả vì Khách Hàng”, Tiki luôn không ngừng nỗ lực nâng cao chất lượng dịch vụ và sản phẩm, từ đó mang đến trải nghiệm mua sắm trọn vẹn cho Khách Hàng Việt Nam với dịch vụ giao hàng nhanh trong 2 tiếng và ngày hôm sau BookStoreNOW lần đầu tiên tại Đông Nam Á, cùng cam kết cung cấp hàng chính hãng với chính sách hoàn tiền 111% nếu phát hiện hàng giả, hàng nhái.</p>
             </div>
-            <section class="product-sec">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 slider-sec">
-                            <!-- main slider carousel -->
-                            <div id="myCarousel" class="carousel slide">
-                                <!-- main slider carousel items -->
-                                <div class="carousel-inner">
-                                    <div class="active item carousel-item" data-slide-number="0">
-                                        <img src="/upload/<%- char.image %>" class="img-fluid">
-                                    </div>
-                                </div>
-                                
-                            </div>
-                            <!--/main slider carousel-->
-                        </div>
-                        <div class="col-md-6 slider-content">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <form action="<%- char.id %>" method="POST" role="form" enctype="multipart/form-data">
-                                        <div class="row">
-                                            <div class="form-group col-md-6">
-                                                <label for="form-title">Name:</label>
-                                                <input type="text" class="form-control" id="name" name="name" value="<%- char.name %>">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="form-title">Phone:</label>
-                                                <input type="number" class="form-control" id="phone" name="phone" value="<%- char.phone %>">
-                                            </div>
-                                        
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-group col-md-8">
-                                                <label for="form-key">Email:</label>
-                                                <input type="text" class="form-control" id="email" name="email" value="<%- char.email %>" readonly> 
-                                            </div>
-                                            
-                                        </div>
-                                       
-                                        <div class="form-group">
-                                            <label for="">Image:</label>
-                                            <input type="file" class="form-control" id="image" name="image">
-                                        </div>
-                                        <br>
-                                        <button type="submit" class="btn btn-primary d-flex justify-content-center">Update</button>
-                                        <!-- <div class="text-center"><button type="submit" class="btn btn-primary">Submit</button></div> -->
-                                    </form>
-
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <dt>Video giới thiệu BookStore:</dt>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/04KVix0i-no" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             
+        </div>
     </section>
     <footer>
         <div class="container">
@@ -164,15 +122,15 @@
                     <div class="navigation">
                         <h4>Navigation</h4>
                         <ul>
-                            <li><a href="../index.html/<%- char.id %>">Home</a></li>
-                            <li><a href="../about.html/<%- char.id %>">About Us</a></li>
-                            <li><a href="../shop.html/<%- char.id %>">Products</a></li>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="shop.html">Products</a></li>
                         </ul>
                     </div>
                     <div class="navigation">
                         <h4>Help</h4>
                         <ul>
-                            <li><a href="../faq.html/<%- char.id %>">FAQ’s</a></li>
+                            <li><a href="faq.html">FAQ’s</a></li>
                         </ul>
                     </div>
                 </div>
@@ -225,4 +183,3 @@
 </body>
 
 </html>
-

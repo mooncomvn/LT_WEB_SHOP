@@ -438,7 +438,6 @@ app.get("/product/:id", function(req,res){
     });
 });
 
-
 app.get("/shop.html/:id", function(req,res){
     var categ = req.params.id;
     pool.connect(function(err, client, done){
@@ -456,6 +455,8 @@ app.get("/shop.html/:id", function(req,res){
     });
 });
 
+
+//---------------------------USER---------------------------
 app.get("/user/dashboard/:id", function(req,res){
     var id = req.params.id;
     pool.connect(function(err, client, done){
@@ -485,7 +486,7 @@ app.post("/user/dashboard/:id",urlencodeParser, function(req,res){
                     if(err){
                         return console.error('error fetching client from pool', err);
                     }
-                    var sql = "update users set name = '"+req.body.name+"', email = '"+req.body.email+"', phone = '"+req.body.phone+"' where id="+id;
+                    var sql = "update users set name = '"+req.body.name+"', phone = '"+req.body.phone+"' where id="+id;
                     client.query(sql, function(err, result){
                         done();
                         if(err){
@@ -517,3 +518,42 @@ app.post("/user/dashboard/:id",urlencodeParser, function(req,res){
       });
 });
 
+app.get("/user/index.html/:id", function(req,res)
+{
+    var id = req.params.id;
+    pool.connect(function(err, client, done){
+        if(err){
+            return console.error('error fetching client from pool', err);
+        }
+        client.query('select * from book', function(err, result1){
+            client.query('select * from users where id =' + id, function(err, result){
+                done();
+                if(err){
+                    return console.error('error running query', err);
+                }
+                res.render("home_user",{char:result.rows[0], data:result1});
+            });
+    });
+    });
+    
+})
+
+app.get("/user/about.html/:id", function(req,res)
+{
+    var id = req.params.id;
+    pool.connect(function(err, client, done){
+        if(err){
+            return console.error('error fetching client from pool', err);
+        }
+        
+            client.query('select * from users where id =' + id, function(err, result){
+                done();
+                if(err){
+                    return console.error('error running query', err);
+                }
+                res.render("about_user",{char:result.rows[0]});
+            
+        });
+    });
+    
+})

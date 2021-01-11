@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Book Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#03a6f3">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#03a6f3">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/4e5ceaba89.js" crossorigin="anonymous"></script>   
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+    <style>
+       .recomended-sec img {
+          width: 120px ;
+          height: auto;
+        }
+        .recent-book-sec img{
+          width: 120px ;
+          height: auto;
+        }
+        
+        </style>
+        <style>
+            .avatar {
+      vertical-align: middle;
+      width: 27px;
+      height: 27px;
+      border-radius: 50%;
+    }
+        </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3"><a href="#" class="web-url">www.bookstore.com</a></div>
+                    <div class="col-md-6">
+                        </div>
+                    <div class="col-md-3">
+                        <span class="ph-number">Call : 800 1234 5678</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-menu">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="navbar-brand" href="../index.html/<%- char.id %>"><img src="../../images/logo.png" alt="logo"></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="navbar-item">
+                                <a href="../index.html/<%- char.id %>" class="nav-link">Home</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="../shop.html/<%- char.id %>" class="nav-link">Shop</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="../about.html/<%- char.id %>" class="nav-link">About</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="../faq.html/<%- char.id %>" class="nav-link">FAQ</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="../dashboard/<%- char.id %>"><img src="/upload/<%- char.image %>" alt="Avatar" class="avatar"></a>
+                                
+                            </li>
+                            <li class="navbar-item">
+                                <a href="../../login.html" class="nav-link">Logout</a>
+                            </li>
+                            
+                        </ul>
+
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <section class="slider">
+        <div class="container">
+            <div id="owl-demo" class="owl-carousel owl-theme">
+                <div class="item">
+                    <div class="slide">
+                        <img src="images/slide1.jpg" alt="slide1">
+                        <div class="content">
+                            <div class="title">
+                                <h3>welcome to bookstore</h3>
+                                <h5>Khám phá những cuốn sách hay nhất </h5>
+                                <a href="../../shop.html" class="btn">shop books</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="slide">
+                        
+                        <img src="images/slide2.jpg" alt="slide1">
+                        <div class="content">
+                            <div class="title">
+                                <h3>welcome to bookstore</h3>
+                                <h5>Khám phá những cuốn sách hay nhất </h5>
+                                <a href="#" class="btn">shop books</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="slide">
+                        <img src="images/slide3.jpg" alt="slide1">
+                        <div class="content">
+                            <div class="title">
+                                <h3>welcome to bookstore</h3>
+                                <h5>Khám phá những cuốn sách hay nhất </h5>
+                                <a href="#" class="btn">shop books</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="slide">
+                        <img src="images/slide4.jpg" alt="slide1">
+                        <div class="content">
+                            <div class="title">
+                                <h3>welcome to bookstore</h3>
+                                <h5>Khám phá những cuốn sách hay nhất </h5>
+                                <a href="#" class="btn">shop books</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="recomended-sec">
+        <div class="container">
+            <div class="title">
+                <h2>new releases</h2>
+                <hr>
+            </div>
+            <div class="row">
+                <% var i=1; data.rows.forEach(function(item){ %>
+                        <% if(item.type == 'New'){%>
+                            <% if(i<5) {%>
+                            <%i=i+1;%>
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="item">
+                                        <img src="../upload/<%= item.image %>" alt="img">
+                                        <h3><a href="../../product/<%= item.id %>"><%= item.name %></a></h3>
+                                        <h6><span class="price"><%- item.cur_cost %></span> / <a href="../../product/<%= item.id %>">Buy Now</a></h6>
+                                    </div>
+                                </div>
+                        <%}%>
+                    <%}%>
+                <%})%>
+            </div>
+
+        </div>
+    </section>
+    <section class="about-sec">
+        <div class="about-img">
+            <figure style="background:url(../../images/about-img.jpg)no-repeat;"></figure>
+        </div>
+        <div class="about-content">
+            <h2>About bookstore</h2>
+            <p>Bookstore là trang mua-bán sách trực tuyến thông dụng và uy tín nhất Việt Nam, luôn cố gắng phục vụ một cách tốt nhất và chất lượng nhất cho khách hàng, đảm bảo sự hài lòng. </p>
+            <p>Đến với Bookstore, khách hàng có thể an tâm về chất lượng sản phẩm cũng như các chính sách hỗ trợ, bảo đảm cho khách hàng. Chúng tôi tự tin khẳng định Bookstore là website bán sách có chất lượng đội ngũ nhân viên tốt nhất sẵn sàng hỗ trợ 24/7. </p>
+            <div class="btn-sec">
+                <a href="../shop.html/<%- char.id %>" class="btn yellow">shop books</a>
+            </div>
+        </div>
+    </section>
+    <section class="recent-book-sec">
+        <div class="container">
+            <div class="title">
+                <h2>best seller</h2>
+                <hr>
+            </div>
+            <div class="row">
+                <% var i=1; data.rows.forEach(function(item){ %>
+                    <% if(item.type == 'Best'){%>
+                        <% if(i<11) {%>
+                        <%i=i+1;%>
+                        <div class="col-lg-2 col-md-3 col-sm-4">
+                            <div class="item">
+                                <img src="../../upload/<%= item.image %>" alt="img">
+                                <h3><a href="../../product/<%= item.id %>"><%= item.name %></a></h3>
+                                <h6><span class="price"><%- item.cur_cost %></span> / <a href="../../product/<%= item.id %>">Buy Now</a></h6>
+                            </div>
+                        </div> 
+                    <%}%>
+                <%}%>
+            <%})%>
+            </div>
+            <div class="btn-sec">
+                <a href="../shop.html/<%- char.id %>" class="btn gray-btn">Xem tất cả</a>
+            </div>
+        </div>
+    </section>
+    <section class="features-sec">
+        <div class="container">
+            <ul>
+                <li>
+                    <span class="icon"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
+                    <h3>SAFE SHOPPING</h3>
+                    <h5>Đảm bảo mua sắm an toàn</h5>
+                    
+                </li>
+                <li>
+                    <span class="icon return"><i class="fa fa-reply-all" aria-hidden="true"></i></span>
+                    <h3>30- DAY RETURN</h3>
+                    <h5>Đảm bảo hoàn tiền</h5>
+                    
+                </li>
+                <li>
+                    <span class="icon chat"><i class="fa fa-comments" aria-hidden="true"></i></span>
+                    <h3>24/7 SUPPORT</h3>
+                    <h5>Tư vấn trực tuyến</h5>
+                    
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="offers-sec" style="background:url(../../images/offers.jpg)no-repeat;">
+        <div class="cover"></div>
+    </section>
+    <section class="testimonial-sec">
+        <div class="container">
+            <div id="testimonal" class="owl-carousel owl-theme">
+                <div class="item">
+                    <h3>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's printer took a galley of type and Scrambled it to make a type and typesetting industry. been the book</h3>
+                    <div class="box-user">
+                        <h4 class="author">Susane Mathew</h4>
+                        <span class="country">American</span>
+                    </div>
+                </div>
+                <div class="item">
+                    <h3>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's printer took a galley of type and Scrambled it to make a type and typesetting industry. been the book</h3>
+                    <div class="box-user">
+                        <h4 class="author">Marika Sasuko</h4>
+                        <span class="country">Japan</span>
+                    </div>
+                </div>
+                <div class="item">
+                    <h3>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's printer took a galley of type and Scrambled it to make a type and typesetting industry. been the book</h3>
+                    <div class="box-user">
+                        <h4 class="author">Optimus</h4>
+                        <span class="country">VietNam</span>
+                    </div>
+                </div>
+                <div class="item">
+                    <h3>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's printer took a galley of type and Scrambled it to make a type and typesetting industry. been the book</h3>
+                    <div class="box-user">
+                        <h4 class="author">Donal Trump</h4>
+                        <span class="country">American</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="left-quote">
+            <img src="../../images/left-quote.png" alt="quote">
+        </div>
+        <div class="right-quote">
+            <img src="../../images/right-quote.png" alt="quote">
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="address">
+                        <h4>Our Address</h4>
+                        <h6>The BookStore Theme, 4th Store
+                        Beside that building, USA</h6>
+                        <h6>Call : 800 1234 5678</h6>
+                        <h6>Email : info@bookstore.com</h6>
+                    </div>
+                    <div class="timing">
+                        <h4>Timing</h4>
+                        <h6>Mon - Fri: 7am - 10pm</h6>
+                        <h6>​​Saturday: 8am - 10pm</h6>
+                        <h6>​Sunday: 8am - 11pm</h6>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="navigation">
+                        <h4>Navigation</h4>
+                        <ul>
+                            <li><a href="../index.html/<%- char.id %>">Home</a></li>
+                            <li><a href="../about.html/<%- char.id %>">About Us</a></li>
+                            <li><a href="../shop.html/<%- char.id %>">Products</a></li>
+                        </ul>
+                    </div>
+                    <div class="navigation">
+                        <h4>Help</h4>
+                        <ul>
+                            <li><a href="../faq.html/<%- char.id %>">FAQ’s</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form">
+                        <h3>Liên hệ với chúng tôi</h3>
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input placeholder="Name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" placeholder="Email" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <textarea placeholder="Messege"></textarea>
+                                </div>
+                                <div class="col-md-12">
+                                    <button class="btn black">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copy-right">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>(C) 2017. All Rights Reserved. BookStore Wordpress Theme</h5>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="share align-middle">
+                            <span class="fb"><i class="fa fa-facebook-official"></i></span>
+                            <span class="instagram"><i class="fa fa-instagram"></i></span>
+                            <span class="twitter"><i class="fa fa-twitter"></i></span>
+                            <span class="pinterest"><i class="fa fa-pinterest"></i></span>
+                            <span class="google"><i class="fa fa-google-plus"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script src="js/custom.js"></script>
+</body>
+
+</html>
