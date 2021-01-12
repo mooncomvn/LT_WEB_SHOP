@@ -77,7 +77,7 @@
                         <!-- main slider carousel items -->
                         <div class="carousel-inner">
                             <div class="active item carousel-item" data-slide-number="0">
-                                <img src="../images/<%- data.image %>" class="img-fluid">
+                                <img src="../upload/<%- data.image %>" class="img-fluid">
                             </div>
                         </div>
                         <!-- main slider carousel nav controls -->
@@ -99,8 +99,9 @@
                         <li><span class="save-cost">Save (<%- (data.pre_cost-data.cur_cost) %>) </span></li>
                     </ul>
                     <div class="btn-sec">
-                        <button class="btn ">Add To cart</button>
-                        <button class="btn black">Buy Now</button>
+                        <a href="../../login.html"><button class="btn ">Add To cart</button></a>
+                        <a href="../../login.html"><button class="btn black">Buy Now</button></a>
+                        
                     </div>
                 </div>
             </div>

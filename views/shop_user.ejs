@@ -54,7 +54,6 @@
       document.getElementById("leftMenu").style.display = "none";
     }
     
-
     </script>
     <style>
         .recomended-sec img {
@@ -65,6 +64,14 @@
            width: 180px ;
            height: auto;
          }
+    </style>
+    <style>
+        .avatar {
+  vertical-align: middle;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+}
     </style>
    
 </head>
@@ -86,30 +93,32 @@
         <div class="main-menu">
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
-                    <a class="navbar-brand" href="../index.html"><img src="../images/logo.png" alt="logo"></a>
+                    <a class="navbar-brand" href="/user/index.html/<%- char.id %>"><img src="../../images/logo.png" alt="logo"></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
                             <li class="navbar-item">
-                                <a href="../index.html" class="nav-link">Home</a>
+                                <a href="index.html/<%- char.id %>" class="nav-link">Home</a>
                             </li>
                             <li class="navbar-item active">
-                                <a href="../shop.html" class="nav-link">Shop</a>
+                                <a href="shop.html?user=<%- char.id %>" class="nav-link">Shop</a>
                             </li>
                             <li class="navbar-item">
-                                <a href="../about.html" class="nav-link">About</a>
+                                <a href="about.html/<%- char.id %>" class="nav-link">About</a>
                             </li>
                             <li class="navbar-item">
-                                <a href="../faq.html" class="nav-link">FAQ</a>
+                                <a href="faq.html/<%- char.id %>" class="nav-link">FAQ</a>
                             </li>
                             <li class="navbar-item">
-                                <a href="../login.html" class="nav-link">Login</a>
+                                <a href="dashboard/<%- char.id %>"><img src="/upload/<%- char.image %>" alt="Avatar" class="avatar"></a>
+                                
                             </li>
                             <li class="navbar-item">
-                                <a href="../register.html" class="nav-link">Sign Up</a>
+                                <a href="../../login.html" class="nav-link">Logout</a>
                             </li>
+                            
                         </ul>
 
                     </div>
@@ -121,22 +130,22 @@
         <button onclick="closeLeftMenu()" class="w3-bar-item w3-button w3-large text-danger">Close &times;</button>
         <h3 class="text-primary w3-bar-item">DANH MỤC SẢN PHẨM</h3>
         <hr>
-        <a href="../shop.html/kinh-te" class="w3-bar-item w3-button">Kinh tế</a>
-        <a href="../shop.html/ky-nang-song" class="w3-bar-item w3-button">Kỹ năng sống</a>
-        <a href="../shop.html/kinh-di" class="w3-bar-item w3-button">Kinh dị</a>
-        <a href="../shop.html/lich-su" class="w3-bar-item w3-button">Lịch sử</a>
-        <a href="../shop.html/tieu-thuyet" class="w3-bar-item w3-button">Tiểu thuyết</a>
-        <a href="../shop.html/ngoai-ngu" class="w3-bar-item w3-button">Ngoại ngữ</a>
-        <a href="../shop.html/thieu-nhi" class="w3-bar-item w3-button">Thiếu nhi</a>
-        <a href="../shop.html/van-hoc" class="w3-bar-item w3-button">Văn học</a>
-        <a href="../shop.html/y-hoc" class="w3-bar-item w3-button">Y học</a>
-        <a href="../shop.html/truyen-tranh" class="w3-bar-item w3-button">Truyện tranh</a>
+        <a href="shop.html/categ?user=<%-char.id %>&categ=kinh-te" class="w3-bar-item w3-button">Kinh tế</a>
+        <a href="shop.html/categ?user=<%-char.id %>&categ=ky-nang-song" class="w3-bar-item w3-button">Kỹ năng sống</a>
+        <a href="shop.html/categ?user=<%-char.id %>&categ=kinh-di" class="w3-bar-item w3-button">Kinh dị</a>
+        <a href="shop.html/categ?user=<%-char.id %>&categ=lich-su" class="w3-bar-item w3-button">Lịch sử</a>
+        <a href="shop.html/categ?user=<%-char.id %>&categ=tieu-thuyet" class="w3-bar-item w3-button">Tiểu thuyết</a>
+        <a href="shop.html/categ?user=<%-char.id %>&categ=ngoai-ngu" class="w3-bar-item w3-button">Ngoại ngữ</a>
+        <a href="shop.html/categ?user=<%-char.id %>&categ=thieu-nhi" class="w3-bar-item w3-button">Thiếu nhi</a>
+        <a href="shop.html/categ?user=<%-char.id %>&categ=van-hoc" class="w3-bar-item w3-button">Văn học</a>
+        <a href="shop.html/categ?user=<%-char.id %>&categ=y-hoc" class="w3-bar-item w3-button">Y học</a>
+        <a href="shop.html/categ?user=<%-char.id %>&categ=truyen-tranh" class="w3-bar-item w3-button">Truyện tranh</a>
         <hr>
       </div>
       
     <div class="breadcrumb">
         <div class="container">
-            <a class="breadcrumb-item" href="../index.html">Home</a>
+            <a class="breadcrumb-item" href="/user/index.html/<%-char.id%>">Home</a>
             <span class="breadcrumb-item active">Shop</span>
         </div>
     </div>
@@ -146,58 +155,61 @@
     <section class="static about-sec">
         <div class="container">
             <input type="text" id="myInput2" onkeyup="myFunction()" placeholder="Search for anything...">
+            <div class="row">
+                <div class="col-md-3"><h2>new releases</h2></div>
+            </div>
+            <div class="recomended-sec">
+                <div class="row">
+                    <% var i=1; data.rows.forEach(function(item){ %>
+                        <% if(item.type == 'New'){%>
+                            <% if(i<5) {%>
+                            <%i=i+1;%>
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="item">
+                                        <img src="../upload/<%= item.image %>" alt="img">
+                                        <h3><a href="../../product/?user=<%- char.id %>&product=<%= item.id %>"><%= item.name %></a></h3>
+                                        <h6><span class="price"><%- item.cur_cost %></span> / <a href="../../product/?user=<%- char.id %>&product=<%= item.id %>">Buy Now</a></h6>
+                                    </div>
+                                </div>
+                        <%}%>
+                    <%}%>
+                <%})%>
+                </div>
 
+            </div>
             <div class="row">
                 <div class="col-md-3"><h2>All Book</h2></div>
             </div>
             <div class="recent-book-sec">
-                <div id="myTable2"  class="row">    
-                    <%var catg;%>
-                    <%if(categ_data=="kinh-te") {%>
-                        <%catg='Kinh tế';%>
-                    <%}%>
-                    <%if(categ_data=="ky-nang-song") {%>
-                        <%catg='Kỹ năng sống';%>
-                    <%}%>
-                    <%if(categ_data=="kinh-di") {%>
-                        <%catg='Kinh dị';%>
-                    <%}%>
-                    <%if(categ_data=="lich-su") {%>
-                        <%catg='Lịch sử';%>
-                    <%}%>
-                    <%if(categ_data=="tieu-thuyet") {%>
-                        <%catg='Tiểu thuyết';%>
-                    <%}%>
-                    <%if(categ_data=="ngoai-ngu") {%>
-                        <%catg='Ngoại ngữ';%>
-                    <%}%>
-                    <%if(categ_data=="thieu-nhi") {%>
-                        <%catg='Thiếu nhi';%>
-                    <%}%>
-                    <%if(categ_data=="van-hoc") {%>
-                        <%catg='Văn học';%>
-                    <%}%>
-                    <%if(categ_data=="y-hoc") {%>
-                        <%catg='Y học';%>
-                    <%}%>
-                    <%if(categ_data=="truyen-tranh") {%>
-                        <%catg='Truyện tranh';%>
-                    <%}%>
+                <div id="myTable2"  class="row">
                     <%var i=1; data.rows.forEach(function(item){ %>
-                        <% if(i<21 & item.categ==catg) {%>
+                        <% if(i<21) {%>
                         <%i=i+1;%>
                         <div class="col-md-3">
                             <div class="item">
                                 <img src="../upload/<%- item.image %>" alt="img">
-                                <h3><a href="../product/<%- item.id %>"><%- item.name %></a></h3>
-                                <h6><span class="price"><%- item.cur_cost %></span> / <a href="../product/<%- item.id %>">Buy Now</a></h6>
+                                <h3><a href="../../product/?user=<%- char.id %>&product=<%= item.id %>"><%- item.name %></a></h3>
+                                <h6><span class="price"><%- item.cur_cost %></span> / <a href="../../product/?user=<%- char.id %>&product=<%= item.id %>">Buy Now</a></h6>
                             </div>
                         </div>
                         
                         <%}%>
                     <%})%>
+                    
                 </div>
-                
+                <form action="" >
+                    <div class="pagination-wrapper">
+                        <div class="pagination">
+                            <% for(var i=1; i<(page+1); i++)
+                            { %>
+                                <a href="shop.html/page?user=<%= char.id %>&page=<%- i %>" type="submit" class="btn btn-default"><%- i %></a>
+                            <%}%>
+
+
+                        </div>
+                      </div>
+                </div>
+                </form>
                 
         </div>
     </section>
@@ -223,15 +235,15 @@
                     <div class="navigation">
                         <h4>Navigation</h4>
                         <ul>
-                            <li><a href="../index.html">Home</a></li>
-                            <li><a href="../about.html">About Us</a></li>
-                            <li><a href="../shop.html">Products</a></li>
+                            <li><a href="index.html/<%- char.id %>">Home</a></li>
+                            <li><a href="about.html/<%- char.id %>">About Us</a></li>
+                            <li><a href="shop.html?user=<%- char.id %>">Products</a></li>
                         </ul>
                     </div>
                     <div class="navigation">
                         <h4>Help</h4>
                         <ul>
-                            <li><a href="../faq.html">FAQ’s</a></li>
+                            <li><a href="faq.html/<%- char.id %>">FAQ’s</a></li>
                         </ul>
                     </div>
                 </div>

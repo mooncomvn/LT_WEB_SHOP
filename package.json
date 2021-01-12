@@ -24,6 +24,8 @@
     "sequelize": "^6.3.5"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "source-map-support": "^0.5.19",
+    "webpack-node-externals": "^2.5.2"
   }
 }

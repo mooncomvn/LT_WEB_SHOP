@@ -70,11 +70,11 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
-                            <li class="navbar-item">
+                            <li class="navbar-item active">
                                 <a href="../index.html/<%- char.id %>" class="nav-link">Home</a>
                             </li>
                             <li class="navbar-item">
-                                <a href="../shop.html/<%- char.id %>" class="nav-link">Shop</a>
+                                <a href="../shop.html?user=<%- char.id %>" class="nav-link">Shop</a>
                             </li>
                             <li class="navbar-item">
                                 <a href="../about.html/<%- char.id %>" class="nav-link">About</a>
@@ -107,7 +107,7 @@
                             <div class="title">
                                 <h3>welcome to bookstore</h3>
                                 <h5>Khám phá những cuốn sách hay nhất </h5>
-                                <a href="../../shop.html" class="btn">shop books</a>
+                                <a href="../shop.html?user=<%- char.id %>" class="btn">shop books</a>
                             </div>
                         </div>
                     </div>
@@ -165,9 +165,9 @@
                             <%i=i+1;%>
                                 <div class="col-lg-3 col-md-6">
                                     <div class="item">
-                                        <img src="../upload/<%= item.image %>" alt="img">
-                                        <h3><a href="../../product/<%= item.id %>"><%= item.name %></a></h3>
-                                        <h6><span class="price"><%- item.cur_cost %></span> / <a href="../../product/<%= item.id %>">Buy Now</a></h6>
+                                        <img src="/upload/<%= item.image %>" alt="img">
+                                        <h3><a href="../../product/?user=<%- char.id %>&product=<%= item.id %>"><%= item.name %></a></h3>
+                                        <h6><span class="price"><%- item.cur_cost %></span> / <a href="../../product/?user=<%- char.id %>&product=<%= item.id %>">Buy Now</a></h6>
                                     </div>
                                 </div>
                         <%}%>
@@ -186,7 +186,7 @@
             <p>Bookstore là trang mua-bán sách trực tuyến thông dụng và uy tín nhất Việt Nam, luôn cố gắng phục vụ một cách tốt nhất và chất lượng nhất cho khách hàng, đảm bảo sự hài lòng. </p>
             <p>Đến với Bookstore, khách hàng có thể an tâm về chất lượng sản phẩm cũng như các chính sách hỗ trợ, bảo đảm cho khách hàng. Chúng tôi tự tin khẳng định Bookstore là website bán sách có chất lượng đội ngũ nhân viên tốt nhất sẵn sàng hỗ trợ 24/7. </p>
             <div class="btn-sec">
-                <a href="../shop.html/<%- char.id %>" class="btn yellow">shop books</a>
+                <a href="../shop.html?user=<%- char.id %>" class="btn yellow">shop books</a>
             </div>
         </div>
     </section>
@@ -204,8 +204,8 @@
                         <div class="col-lg-2 col-md-3 col-sm-4">
                             <div class="item">
                                 <img src="../../upload/<%= item.image %>" alt="img">
-                                <h3><a href="../../product/<%= item.id %>"><%= item.name %></a></h3>
-                                <h6><span class="price"><%- item.cur_cost %></span> / <a href="../../product/<%= item.id %>">Buy Now</a></h6>
+                                <h3><a href="../../product/?user=<%- char.id %>&product=<%= item.id %>"><%= item.name %></a></h3>
+                                <h6><span class="price"><%- item.cur_cost %></span> / <a href="../../product/?user=<%- char.id %>&product=<%= item.id %>">Buy Now</a></h6>
                             </div>
                         </div> 
                     <%}%>
@@ -213,7 +213,7 @@
             <%})%>
             </div>
             <div class="btn-sec">
-                <a href="../shop.html/<%- char.id %>" class="btn gray-btn">Xem tất cả</a>
+                <a href="../shop.html?user=<%- char.id %>" class="btn gray-btn">Xem tất cả</a>
             </div>
         </div>
     </section>
@@ -308,7 +308,7 @@
                         <ul>
                             <li><a href="../index.html/<%- char.id %>">Home</a></li>
                             <li><a href="../about.html/<%- char.id %>">About Us</a></li>
-                            <li><a href="../shop.html/<%- char.id %>">Products</a></li>
+                            <li><a href="../shop.html?user=<%- char.id %>">Products</a></li>
                         </ul>
                     </div>
                     <div class="navigation">

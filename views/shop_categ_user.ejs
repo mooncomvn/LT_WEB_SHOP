@@ -27,11 +27,11 @@
     <title>Book Store</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#03a6f3">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800,900" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" type="text/css" href="../../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../../css/styles.css">
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -65,6 +65,11 @@
            width: 180px ;
            height: auto;
          }
+         .avatar {
+  vertical-align: middle;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;}
     </style>
    
 </head>
@@ -86,30 +91,32 @@
         <div class="main-menu">
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
-                    <a class="navbar-brand" href="../index.html"><img src="../images/logo.png" alt="logo"></a>
+                    <a class="navbar-brand" href="/user/index.html/<%- char.id %>"><img src="../../images/logo.png" alt="logo"></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
                             <li class="navbar-item">
-                                <a href="../index.html" class="nav-link">Home</a>
+                                <a href="/user/index.html/<%- char.id %>" class="nav-link">Home</a>
                             </li>
                             <li class="navbar-item active">
-                                <a href="../shop.html" class="nav-link">Shop</a>
+                                <a href="/user/shop.html?user=<%- char.id %>" class="nav-link">Shop</a>
                             </li>
                             <li class="navbar-item">
-                                <a href="../about.html" class="nav-link">About</a>
+                                <a href="/user/about.html/<%- char.id %>" class="nav-link">About</a>
                             </li>
                             <li class="navbar-item">
-                                <a href="../faq.html" class="nav-link">FAQ</a>
+                                <a href="/user/faq.html/<%- char.id %>" class="nav-link">FAQ</a>
                             </li>
                             <li class="navbar-item">
-                                <a href="../login.html" class="nav-link">Login</a>
+                                <a href="/user/dashboard/<%- char.id %>"><img src="/upload/<%- char.image %>" alt="Avatar" class="avatar"></a>
+                                
                             </li>
                             <li class="navbar-item">
-                                <a href="../register.html" class="nav-link">Sign Up</a>
+                                <a href="../../login.html" class="nav-link">Logout</a>
                             </li>
+                            
                         </ul>
 
                     </div>
@@ -121,22 +128,22 @@
         <button onclick="closeLeftMenu()" class="w3-bar-item w3-button w3-large text-danger">Close &times;</button>
         <h3 class="text-primary w3-bar-item">DANH MỤC SẢN PHẨM</h3>
         <hr>
-        <a href="../shop.html/kinh-te" class="w3-bar-item w3-button">Kinh tế</a>
-        <a href="../shop.html/ky-nang-song" class="w3-bar-item w3-button">Kỹ năng sống</a>
-        <a href="../shop.html/kinh-di" class="w3-bar-item w3-button">Kinh dị</a>
-        <a href="../shop.html/lich-su" class="w3-bar-item w3-button">Lịch sử</a>
-        <a href="../shop.html/tieu-thuyet" class="w3-bar-item w3-button">Tiểu thuyết</a>
-        <a href="../shop.html/ngoai-ngu" class="w3-bar-item w3-button">Ngoại ngữ</a>
-        <a href="../shop.html/thieu-nhi" class="w3-bar-item w3-button">Thiếu nhi</a>
-        <a href="../shop.html/van-hoc" class="w3-bar-item w3-button">Văn học</a>
-        <a href="../shop.html/y-hoc" class="w3-bar-item w3-button">Y học</a>
-        <a href="../shop.html/truyen-tranh" class="w3-bar-item w3-button">Truyện tranh</a>
+        <a href="../shop.html/categ?user=<%- char.id %>&categ=kinh-te" class="w3-bar-item w3-button">Kinh tế</a>
+        <a href="../shop.html/categ?user=<%- char.id %>&categ=ky-nang-song" class="w3-bar-item w3-button">Kỹ năng sống</a>
+        <a href="../shop.html/categ?user=<%- char.id %>&categ=kinh-di" class="w3-bar-item w3-button">Kinh dị</a>
+        <a href="../shop.html/categ?user=<%- char.id %>&categ=lich-su" class="w3-bar-item w3-button">Lịch sử</a>
+        <a href="../shop.html/categ?user=<%- char.id %>&categ=tieu-thuyet" class="w3-bar-item w3-button">Tiểu thuyết</a>
+        <a href="../shop.html/categ?user=<%- char.id %>&categ=ngoai-ngu" class="w3-bar-item w3-button">Ngoại ngữ</a>
+        <a href="../shop.html/categ?user=<%- char.id %>&categ=thieu-nhi" class="w3-bar-item w3-button">Thiếu nhi</a>
+        <a href="../shop.html/categ?user=<%- char.id %>&categ=van-hoc" class="w3-bar-item w3-button">Văn học</a>
+        <a href="../shop.html/categ?user=<%- char.id %>&categ=y-hoc" class="w3-bar-item w3-button">Y học</a>
+        <a href="../shop.html/categ?user=<%- char.id %>&categ=truyen-tranh" class="w3-bar-item w3-button">Truyện tranh</a>
         <hr>
       </div>
       
     <div class="breadcrumb">
         <div class="container">
-            <a class="breadcrumb-item" href="../index.html">Home</a>
+            <a class="breadcrumb-item" href="/user/index.html/<%-char.id%>">Home</a>
             <span class="breadcrumb-item active">Shop</span>
         </div>
     </div>
@@ -188,9 +195,9 @@
                         <%i=i+1;%>
                         <div class="col-md-3">
                             <div class="item">
-                                <img src="../upload/<%- item.image %>" alt="img">
-                                <h3><a href="../product/<%- item.id %>"><%- item.name %></a></h3>
-                                <h6><span class="price"><%- item.cur_cost %></span> / <a href="../product/<%- item.id %>">Buy Now</a></h6>
+                                <img src="/upload/<%- item.image %>" alt="img">
+                                <h3><a href="../../product/?user=<%- char.id %>&product=<%= item.id %>"><%- item.name %></a></h3>
+                                <h6><span class="price"><%- item.cur_cost %></span> / <a href="../../product/?user=<%- char.id %>&product=<%= item.id %>">Buy Now</a></h6>
                             </div>
                         </div>
                         
@@ -223,15 +230,15 @@
                     <div class="navigation">
                         <h4>Navigation</h4>
                         <ul>
-                            <li><a href="../index.html">Home</a></li>
-                            <li><a href="../about.html">About Us</a></li>
-                            <li><a href="../shop.html">Products</a></li>
+                            <li><a href="/user/index.html/<%- char.id %>">Home</a></li>
+                            <li><a href="/user/about.html/<%- char.id %>">About Us</a></li>
+                            <li><a href="/user/shop.html?user=<%- char.id %>">Products</a></li>
                         </ul>
                     </div>
                     <div class="navigation">
                         <h4>Help</h4>
                         <ul>
-                            <li><a href="../faq.html">FAQ’s</a></li>
+                            <li><a href="/user/faq.html/<%- char.id %>">FAQ’s</a></li>
                         </ul>
                     </div>
                 </div>

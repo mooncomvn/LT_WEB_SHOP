@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-    <!-- <meta charset="UTF-8">
-    <title>Book Store</title>
+    <meta charset="UTF-8">
+    <title>Book Store Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#03a6f3">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -11,21 +11,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
-    <meta charset="UTF-8">
-    <title>Book Store</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#03a6f3">
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../../css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../../css/styles.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <style>
-        #logo{
-            width: 300px;
-            height: auto;
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/4e5ceaba89.js" crossorigin="anonymous"></script>   
+  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"></script>
+  <script src="/js/search.js"></script>
+  <link rel="stylesheet" href="/css/search.css">
+  <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+  <style>
+     tr td img {
+          width: 100px ;
+          height: auto;
         }
     </style>
 </head>
@@ -36,7 +36,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3"><a href="#" class="web-url">www.bookstore.com</a></div>
-                    <div class="col-md-6"></div>
+                    <div class="col-md-6">
+                        </div>
                     <div class="col-md-3">
                         <span class="ph-number">Call : 800 1234 5678</span>
                     </div>
@@ -53,51 +54,81 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
                             <li class="navbar-item">
-                                <a href="index.html" class="nav-link">Home</a>
-                            </li>
-                            <li class="navbar-item">
-                                <a href="shop.html" class="nav-link">Shop</a>
+                                <a href="admin" class="nav-link">Book</a>
                             </li>
                             <li class="navbar-item active">
-                                <a href="about.html" class="nav-link">About</a>
+                                <a href="user" class="nav-link">User</a>
                             </li>
-                            <li class="navbar-item">
-                                <a href="faq.html" class="nav-link">FAQ</a>
-                            </li>
-                            <li class="navbar-item">
-                                <a href="login.html" class="nav-link">Login</a>
-                            </li>
-                            <li class="navbar-item">
-                                <a href="register.html" class="nav-link">Sign Up</a>
-                            </li>
+                        
                         </ul>
-
+                        
                     </div>
                 </nav>
             </div>
         </div>
     </header>
-    <div class="breadcrumb">
+    <section class="recomended-sec">
         <div class="container">
-            <a class="breadcrumb-item" href="index.html">Home</a>
-            <span class="breadcrumb-item active">About</span>
-        </div>
-    </div>
-    <section class="static about-sec">
-        <div class="container">
-            <h1>About Us</h1>
-            <div class="img-sec">
-                <img id="logo" src="images/bookstore_logo.jpg" alt="about">
-                <p>BookStore là một hệ sinh thái thương mại tất cả trong một, gồm các công ty thành viên như:</p>
-                <li>BookStoreNOW Smart Logistics cung cấp dịch vụ logistics đầu-cuối;</li>
-                <li>BookStorebox mang đến dịch vụ vé sự kiện, xem phim hàng đầu;</li>
-                <li>Đơn vị bán lẻ BookStore Trading và Sàn Giao dịch cung cấp 10 triệu sản phẩm từ 26 ngành hàng phục vụ hàng triệu khách hàng trên toàn quốc.</li>
+            <div class="title">
+                <h2>User Management</h2>
+                <hr>
                 <br>
-                <p>Với phương châm hoạt động “Tất cả vì Khách Hàng”, Tiki luôn không ngừng nỗ lực nâng cao chất lượng dịch vụ và sản phẩm, từ đó mang đến trải nghiệm mua sắm trọn vẹn cho Khách Hàng Việt Nam với dịch vụ giao hàng nhanh trong 2 tiếng và ngày hôm sau BookStoreNOW lần đầu tiên tại Đông Nam Á, cùng cam kết cung cấp hàng chính hãng với chính sách hoàn tiền 111% nếu phát hiện hàng giả, hàng nhái.</p>
             </div>
-            <dt>Video giới thiệu BookStore:</dt>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/04KVix0i-no" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for anything...">
             
+            <div class="row">
+                <div class="col-md-12">
+                    <table id="myTable" class="table table-hover table-bordered">
+                        <thead>
+                            <tr class="bg-primary">
+                                <th class="text-light">STT</th>
+                                <th class="text-light">ID</th>
+                                <th class="text-light">Name</th>
+                                <th class="text-light">Email</th>
+                                <th class="text-light">Avatar</th>
+                                <th class="text-light">Phone</th>
+                                <th class="text-light">Status</th>
+                                <th class="text-light"></th>
+                            </tr>
+                            
+                        </thead>
+                        <tbody>
+                            <% var i=1; data.rows.forEach(function(item){ %>
+                                <tr>
+                                    <form action="?user=<%-item.id%>&status=<%-item.status%>" method="POST" role="form" >
+                                    <td><%= i %></td>
+                                    <td><%= item.id %></td>
+                                    <td><%= item.name %></td>
+                                    <td><%= item.email%></td>
+                                    <td><img src="../upload/<%= item.image %>"></td>
+                                    <td><%= item.phone %></td>
+                                    <td><% if(item.status==true){ %>
+                                        <div class="form-check form-check-inline">
+                                            <input type="checkbox" name="inlineCheckbox1" id="inlineCheckbox1" value="true" checked>
+                                        </div>
+                                    <%}%>
+                                    <% if(item.status==false){ %>
+                                        <div class="form-check form-check-inline">
+                                            <input type="checkbox" name="inlineCheckbox1" id="inlineCheckbox1" value="false">
+                                        </div>
+                                    <%}%>
+                                    
+                                    </td>
+                                    <td><button><span class="fas fa-edit"></span></button></td>
+                                    </form>
+                                    
+                                </tr>
+                                <% i++ %>
+                            <%})%>
+                            
+                        </tbody>
+                        <tfoot>
+
+                        </tfoot>
+                        
+                    </table>
+                </div>
+            </div>
         </div>
     </section>
     <footer>

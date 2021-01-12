@@ -5,57 +5,16 @@ app.use(express.static("public")); //Mặc định thư mục ban đầu là pub
 app.set("view engine", "ejs"); //Sử dụng ejs
 app.set("views", "./views"); //Thư mục views để chứa các ejs...
 const bcrypt = require('bcrypt');
-// const LocalStrategy = require("passport-local").Strategy;
-// function initialize(passport){
-//     const autheticateUser = (email, password, done)=>{
-//         pool.query(
-//             `SELECT * FROM users WHERE email = $1`,
-//             [email],
-//             (err,result)=>{
-//             if(err){
-//                 throw err;
-//             }
-//             console.log(result.rows);
-//             if(result.rows.length>0){
-//                 const user = result.rows[0];
-//                 bcrypt.compare(password, user.password,(err, isMatch)=>{
-//                     if(err){
-//                         throw err;
-//                     }
-//                     if(isMatch){
-//                         return done(null, user);
-//                     }else{
-//                         return done(null, false, {message:"Password is not correct"})
-//                     }
-//                 });
-//             }else{
-//                 return done(null, false, {message: "Email is not registered!"})
-//             }
-//         }
-//         )
-//     }
-//     passport.use(new LocalStrategy({
-//         usernameField: "email",
-//         passwordField: "password", 
-//     }, autheticateUser
-//     )
-//     );
-//     passport.serializeuser((user, done)=>done(null, user.id));
-//     passport.deserializeUser((id, done)=>{
-//         pool.query(
-//             `SELECT * FROM users WHERE id = $1`, [id], (err, result)=>{
-//                 if(err){
-//                     throw err;
-//                 }
-//                 return done(null, result.rows[0]);
-//             }
-//         );
-//     });
-// }
+const nodeExternals = require('webpack-node-externals');
+var http = require("http");
+var url = require('url');
+
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
-
 app.listen(3000);
+
+var windowVar = global.sourceUrl;
 
 var pg = require("pg");
 var config = {
@@ -67,8 +26,6 @@ var config = {
     max: 10,
     idleTimeoutMillis: 30000,
 };
-
-
 
 var bodyParser = require('body-parser');
 var urlencodeParser = bodyParser.urlencoded({ extended:false });
@@ -88,7 +45,7 @@ var upload = multer({ storage: storage }).single('image');
 
 var pool = new pg.Pool(config);
 
-
+// ---------------------------USER NO LOGIN-----------------------------
 app.get("/", function(req,res)
 {
     pool.connect(function(err, client, done){
@@ -123,7 +80,6 @@ app.get("/index.html", function(req,res)
     });
     
 })
-
 
 app.get("/shop.html", function(req,res){
     pool.connect(function(err, client, done){
@@ -164,144 +120,6 @@ app.get("/shop.html/page/:id", function(req,res){
     });
  });
 
-app.get("/admin", function(req,res){
-    pool.connect(function(err, client, done){
-        if(err){
-            return console.error('error fetching client from pool', err);
-        }
-        client.query('select * from book', function(err, result){
-            done();
-            if(err){
-                return console.error('error running query', err);
-            }
-            res.render("admin.ejs",{data:result});
-        });
-    });
-});
-
-app.get("/delete/:id", function(req,res){
-    pool.connect(function(err, client, done){
-        if(err){
-            return console.error('error fetching client from pool', err);
-        }
-        client.query('delete from book where id =' +req.params.id, function(err, result){
-            done();
-            if(err){
-                return console.error('error running query', err);
-            }
-            res.redirect("../admin");
-        });
-        
-    });
-});
-
-app.get("/add", function(req,res){
-    res.render("add");
-});
-
-app.post("/add",urlencodeParser, function(req,res){
-    upload(req, res, function (err) {
-        if (err) {
-            res.send("error");
-        }
-        else if(typeof(req.file)=='undefined')
-        {
-            pool.connect(function(err, client, done){
-                if(err){
-                    return console.error('error fetching client from pool', err);
-                }
-                var sql = "insert into book (name,detail,author,pre_cost,cur_cost,type,categ) values ('"+req.body.name+"','"+req.body.detail+"','"+req.body.author+"','"+req.body.pre_cost+"','"+req.body.cur_cost+"','"+req.body.type+"','"+req.body.categ+"')";
-                client.query(sql, function(err, result){
-                    done();
-                    if(err){
-                        return console.error('error running query', err);
-                    }
-                    res.redirect("../admin");
-                });
-                
-            });
-        }
-        else{
-            pool.connect(function(err, client, done){
-                if(err){
-                    return console.error('error fetching client from pool', err);
-                }
-                var sql = "insert into book (name,image,detail,pre_cost,cur_cost,type,categ) values ('"+req.body.name+"','"+req.file.originalname+"','"+req.body.detail+"','"+req.body.pre_cost+"','"+req.body.cur_cost+"','"+req.body.type+"','"+req.body.categ+"')";
-                client.query(sql, function(err, result){
-                    done();
-                    if(err){
-                        return console.error('error running query', err);
-                    }
-                    res.redirect("../admin");
-                });
-                
-            });
-        }
-      })
-});
-
-app.get("/edit/:id", function(req,res){
-    var id = req.params.id;
-    pool.connect(function(err, client, done){
-        if(err){
-            return console.error('error fetching client from pool', err);
-        }
-        client.query('select * from book where id =' + id, function(err, result){
-            done();
-            if(err){
-                return console.error('error running query', err);
-            }
-            res.render("edit",{data:result.rows[0]});
-        });
-        
-    });
-});
-
-app.post("/edit/:id",urlencodeParser, function(req,res){
-    var id=req.params.id;
-    upload(req, res, function (err) {
-        if (err) {
-            res.send("error");
-        }
-        else{
-            if(typeof(req.file)=='undefined'){
-                pool.connect(function(err, client, done){
-                    if(err){
-                        return console.error('error fetching client from pool', err);
-                    }
-                    var sql = "update book set name = '"+req.body.name+"', pre_cost = '"+req.body.pre_cost+"', cur_cost = '"+req.body.cur_cost+"', type= '"+req.body.type+"', categ= '"+req.body.categ+"', detail='"+req.body.detail+"', author='"+req.body.author+"' where id="+id;
-                    client.query(sql, function(err, result){
-                        done();
-                        if(err){
-                            return console.error('error running query', err);
-                        }
-                        res.redirect("../admin");
-                    });
-                    
-                });
-            }
-            else{
-                pool.connect(function(err, client, done){
-                    if(err){
-                        return console.error('error fetching client from pool', err);
-                    }
-                    var sql = "update book set name = '"+req.body.name+"',image ='"+req.file.originalname+"', pre_cost = '"+req.body.pre_cost+"', cur_cost = '"+req.body.cur_cost+"', type= '"+req.body.type+"', categ= '"+req.body.categ+"', detail='"+req.body.detail+"', author='"+req.body.author+"' where id="+id;
-                    client.query(sql, function(err, result){
-                        done();
-                        if(err){
-                            return console.error('error running query', err);
-                        }
-                        res.redirect("../admin");
-                    });
-                    
-                });
-            }
-            
-        }
-      });
-});
-
-
 app.get("/about.html", function(req,res){
     res.render("about");
 });
@@ -315,37 +133,59 @@ app.get("/login.html", function(req,res){
 });
 
 app.post("/login.html",function(req,res){
+    if(req.body.email=='admin@admin.com' & req.body.password==1)
+    {
+        pool.connect(function(err, client, done){
+            if(err){
+                return console.error('error fetching client from pool', err);
+            }
+            client.query('select * from book', function(err, result){
+                done();
+                if(err){
+                    return console.error('error running query', err);
+                }
+                res.render("admin.ejs",{data:result});
+            });
+        });
+    }
+    else{
     var message=[];
     pool.connect(function(err, client, done){
         if(err){
             return console.error('error fetching client from pool', err);
         }
         var sql = "select * from users where email= '"+req.body.email+"' ";
-        client.query(sql, function(err, result){
-            client.query("select * from users where password= '"+req.body.password+"' ", function(err, result1){
+        client.query(sql, function(err, result2){
                 done();
                 if(err){
                     return console.error('error running query', err);
                 }
-                if(result.rows.length<1){
-                    message = "Email does not exist!";
+                if(result2.rows.length<1){
+                    message = "Email không tồn tại!";
                     res.render("login", {mess:message});
                 }
-                if(result1.rows.length<1){
-                    message = "Password is not correct!";
-                    res.render("login", {mess:message});
-                }
-                
                 else{
-                    var id = result.rows[0].id;
+                if(result2.rows[0].status==false)
+                {
+                    message = "Tài khoản của bạn đã bị khóa!";
+                    res.render("login", {mess:message});
+                }
+                else{
+                if(result2.rows[0].password!=req.body.password){
+                    message = "Mật khẩu không chính xác!";
+                    res.render("login", {mess:message});
+                }
+                else{
+                    var id = result2.rows[0].id;
                     res.redirect("user/dashboard/"+id+"");
                 // res.render("dashboard", {char:result1.rows[0]});
-                }
+                }}
+            }
             
-            });   
             
         });   
     });
+}
 });
 
 app.post("/register.html",async function(req,res){
@@ -382,7 +222,7 @@ app.post("/register.html",async function(req,res){
                         if(err){
                             return console.error('error fetching client from pool', err);
                         }
-                        client.query("insert into users (email, name, password) values ('"+req.body.email+"','"+req.body.name+"','"+req.body.password+"')", function(err, result){
+                        client.query("insert into users (email, name, password, status) values ('"+req.body.email+"','"+req.body.name+"','"+req.body.password+"',true)", function(err, result){
                             done();
                             if(err){
                                 return console.error('error running query', err);
@@ -417,7 +257,6 @@ app.get("/register.html", function(req,res){
     
     res.render("register");
 });
-
 
 app.get("/product/:id", function(req,res){
     var id = req.params.id;
@@ -557,3 +396,426 @@ app.get("/user/about.html/:id", function(req,res)
     });
     
 })
+
+app.get("/user/about.html/:id", function(req,res)
+{
+    var id = req.params.id;
+    pool.connect(function(err, client, done){
+        if(err){
+            return console.error('error fetching client from pool', err);
+        }
+        
+            client.query('select * from users where id =' + id, function(err, result){
+                done();
+                if(err){
+                    return console.error('error running query', err);
+                }
+                res.render("about_user",{char:result.rows[0]});
+            
+        });
+    });
+    
+})
+
+app.get("/user/faq.html/:id", function(req,res)
+{
+    var id = req.params.id;
+    pool.connect(function(err, client, done){
+        if(err){
+            return console.error('error fetching client from pool', err);
+        }
+        
+            client.query('select * from users where id =' + id, function(err, result){
+                done();
+                if(err){
+                    return console.error('error running query', err);
+                }
+                res.render("faq_user",{char:result.rows[0]});
+            
+        });
+    });
+    
+})
+
+app.get("/user/shop.html", function(req,res)
+{   var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;  
+    var user = JavascriptgetURLParameterValues("user", fullUrl);
+    // var product = JavascriptgetURLParameterValues("product", fullUrl);
+    pool.connect(function(err, client, done){
+        if(err){
+            return console.error('error fetching client from pool', err);
+        }
+        client.query('select * from users where id=' +user, function(err, char){
+            client.query('select * from book', function(err, result){
+                done();
+                if(err){
+                    return console.error('error running query', err);
+                }
+                var number_book = result.rowCount;
+                var number_page = (number_book/20);
+                res.render("shop_user",{data:result, char:char.rows[0], page:number_page});
+            });
+        });
+    });
+    
+})
+
+app.get("/user/shop.html/page", function(req,res){
+    var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;  
+    var user = JavascriptgetURLParameterValues("user", fullUrl);
+    var page = JavascriptgetURLParameterValues("page", fullUrl);
+    var offset = (page-1)*20;
+    pool.connect(function(err, client, done){
+        if(err){
+            return console.error('error fetching client from pool', err);
+        }
+        client.query('select * from users where id='+user, function(err,char){
+        client.query('select * from book', function(err,count){
+            client.query("select * from book offset '" + offset + "' limit 20 ", function(err, result){
+                done();
+                if(err){
+                    return console.error('error running query', err);
+                }
+                var number_book = count.rowCount;
+                var number_page = (number_book/20);
+                res.render("shop_page_user.ejs",{data:result, page:number_page, char:char.rows[0]});
+            });
+        });
+    });
+    });
+ });
+
+ app.get("/user/shop.html/categ", function(req,res){
+    var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;  
+    var user = JavascriptgetURLParameterValues("user", fullUrl);
+    var categ = JavascriptgetURLParameterValues("categ", fullUrl);
+    pool.connect(function(err, client, done){
+        if(err){
+            return console.error('error fetching client from pool', err);
+        }
+        client.query('select * from users where id=' +user, function(err,char){
+        client.query('select * from book', function(err, result){
+            done();
+                if(err){
+                    return console.error('error running query', err);
+                }
+                res.render("shop_categ_user",{data:result, categ_data:categ, char:char.rows[0]});
+            });
+        });
+        
+    });
+});
+
+app.get("/product",function(req,res){
+    var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;  
+    // var url = 'https://product?parameter1=1&parameter=2&&parameter=2';
+    var user = JavascriptgetURLParameterValues("user", fullUrl);
+    var product = JavascriptgetURLParameterValues("product", fullUrl);
+    // console.log(user);
+    // console.log(product);
+    pool.connect(function(err, client, done){
+        if(err){
+            return console.error('error fetching client from pool', err);
+        }
+        client.query('select * from users where id='+user, function(err, char){
+            client.query('select * from book', function(err,count){
+                client.query('select * from book where id =' + product, function(err, result){
+                    done();
+                    if(err){
+                        return console.error('error running query', err);
+                    }
+                    res.render("product-single_user",{data:result.rows[0], data2:count, char:char.rows[0]});
+                });
+            });
+        });
+        
+    });
+
+});
+
+app.get("/addcart",function(req,res){
+    var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;  
+    var user = JavascriptgetURLParameterValues("user", fullUrl);
+    var product = JavascriptgetURLParameterValues("product", fullUrl);
+    pool.connect(function(err, client, done){
+        if(err){
+            return console.error('error fetching client from pool', err);
+        }
+         client.query('select * from users where id='+user, function(err, char){
+             client.query('select * from book', function(err,data){
+                 client.query('select * from book where id =' + product, function(err, result){
+                    client.query("UPDATE users SET book = book || "+product+" where id="+user, function(err, char2){
+                    done();
+                    if(err){
+                        return console.error('error running query', err);
+                    }
+                    res.render("product-single_user",{data:result.rows[0], data2:data, char:char.rows[0]});
+                });
+            });
+         });
+         });
+        
+    });
+});
+
+app.get("/user/buycart",function(req,res){
+    var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;  
+    var user = JavascriptgetURLParameterValues("user", fullUrl);
+    var product = JavascriptgetURLParameterValues("product", fullUrl);
+    pool.connect(function(err, client, done){
+        if(err){
+            return console.error('error fetching client from pool', err);
+        }
+                    client.query("UPDATE users SET book = book || "+product+" where id="+user, function(err, char2){
+                    done();
+                    if(err){
+                        return console.error('error running query', err);
+                    }
+                    res.redirect("/user/buycart/"+user+""); 
+        });
+        
+    });
+    
+});
+
+app.get("/user/buycart/:id",function(req,res){
+    pool.connect(function(err, client, done){
+        if(err){
+            return console.error('error fetching client from pool', err);
+        }
+        client.query('select * from users where id='+req.params.id, function(err, char){
+                client.query('select * from book', function(err, result){
+                    done();
+                    if(err){
+                        return console.error('error running query', err);
+                    }
+                    res.render("shop_cart",{data:result, char:char.rows[0]});
+            });
+        });
+    });
+        
+});
+    
+app.get("/buycart/delete", function(req,res){
+    var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;  
+    var user = JavascriptgetURLParameterValues("user", fullUrl);
+    var product = JavascriptgetURLParameterValues("product", fullUrl);
+    pool.connect(function(err, client, done){
+        if(err){
+            return console.error('error fetching client from pool', err);
+        }
+        client.query('UPDATE users SET book = array_remove(book, '+product+') where id='+user, function(err, result){
+            done();
+            if(err){
+                return console.error('error running query', err);
+            }
+            res.redirect("/user/buycart/"+user+"");
+        });
+        
+    });
+});
+
+
+// ---------------------------ADMIN-----------------------------
+app.get("/admin", function(req,res){
+    pool.connect(function(err, client, done){
+        if(err){
+            return console.error('error fetching client from pool', err);
+        }
+        client.query('select * from book', function(err, result){
+            done();
+            if(err){
+                return console.error('error running query', err);
+            }
+            res.render("admin.ejs",{data:result});
+        });
+    });
+});
+
+app.get("/user", function(req,res){
+    pool.connect(function(err, client, done){
+        if(err){
+            return console.error('error fetching client from pool', err);
+        }
+        client.query('select * from users', function(err, result){
+            done();
+            if(err){
+                return console.error('error running query', err);
+            }
+            res.render("user.ejs",{data:result});
+        });
+    });
+});
+
+app.get("/user/delete/:id", function(req,res){
+    pool.connect(function(err, client, done){
+        if(err){
+            return console.error('error fetching client from pool', err);
+        }
+        client.query('delete from users where id =' +req.params.id, function(err, result){
+            done();
+            if(err){
+                return console.error('error running query', err);
+            }
+            res.redirect("../../user");
+        });
+        
+    });
+});
+
+app.get("/delete/:id", function(req,res){
+    pool.connect(function(err, client, done){
+        if(err){
+            return console.error('error fetching client from pool', err);
+        }
+        client.query('delete from book where id =' +req.params.id, function(err, result){
+            done();
+            if(err){
+                return console.error('error running query', err);
+            }
+            res.redirect("../admin");
+        });
+        
+    });
+});
+
+app.get("/add", function(req,res){
+    res.render("add");
+});
+
+app.post("/add",urlencodeParser, function(req,res){
+    upload(req, res, function (err) {
+        if (err) {
+            res.send("error");
+        }
+        else if(typeof(req.file)=='undefined')
+        {
+            pool.connect(function(err, client, done){
+                if(err){
+                    return console.error('error fetching client from pool', err);
+                }
+                var sql = "insert into book (name,detail,author,pre_cost,cur_cost,type,categ) values ('"+req.body.name+"','"+req.body.detail+"','"+req.body.author+"','"+req.body.pre_cost+"','"+req.body.cur_cost+"','"+req.body.type+"','"+req.body.categ+"')";
+                client.query(sql, function(err, result){
+                    done();
+                    if(err){
+                        return console.error('error running query', err);
+                    }
+                    res.redirect("../admin");
+                });
+                
+            });
+        }
+        else{
+            pool.connect(function(err, client, done){
+                if(err){
+                    return console.error('error fetching client from pool', err);
+                }
+                var sql = "insert into book (name,image,detail,author,pre_cost,cur_cost,type,categ) values ('"+req.body.name+"','"+req.file.originalname+"','"+req.body.detail+"','"+req.body.author+"','"+req.body.pre_cost+"','"+req.body.cur_cost+"','"+req.body.type+"','"+req.body.categ+"')";
+                client.query(sql, function(err, result){
+                    done();
+                    if(err){
+                        return console.error('error running query', err);
+                    }
+                    res.redirect("../admin");
+                });
+                
+            });
+        }
+      })
+});
+
+app.get("/edit/:id", function(req,res){
+    var id = req.params.id;
+    pool.connect(function(err, client, done){
+        if(err){
+            return console.error('error fetching client from pool', err);
+        }
+        client.query('select * from book where id =' + id, function(err, result){
+            done();
+            if(err){
+                return console.error('error running query', err);
+            }
+            res.render("edit",{data:result.rows[0]});
+        });
+        
+    });
+});
+
+app.post("/edit/:id",urlencodeParser, function(req,res){
+    var id=req.params.id;
+    upload(req, res, function (err) {
+        if (err) {
+            res.send("error");
+        }
+        else{
+            if(typeof(req.file)=='undefined'){
+                pool.connect(function(err, client, done){
+                    if(err){
+                        return console.error('error fetching client from pool', err);
+                    }
+                    var sql = "update book set name = '"+req.body.name+"', pre_cost = '"+req.body.pre_cost+"', cur_cost = '"+req.body.cur_cost+"', type= '"+req.body.type+"', categ= '"+req.body.categ+"', detail='"+req.body.detail+"', author='"+req.body.author+"' where id="+id;
+                    client.query(sql, function(err, result){
+                        done();
+                        if(err){
+                            return console.error('error running query', err);
+                        }
+                        res.redirect("../admin");
+                    });
+                    
+                });
+            }
+            else{
+                pool.connect(function(err, client, done){
+                    if(err){
+                        return console.error('error fetching client from pool', err);
+                    }
+                    var sql = "update book set name = '"+req.body.name+"',image ='"+req.file.originalname+"', pre_cost = '"+req.body.pre_cost+"', cur_cost = '"+req.body.cur_cost+"', type= '"+req.body.type+"', categ= '"+req.body.categ+"', detail='"+req.body.detail+"', author='"+req.body.author+"' where id="+id;
+                    client.query(sql, function(err, result){
+                        done();
+                        if(err){
+                            return console.error('error running query', err);
+                        }
+                        res.redirect("../admin");
+                    });
+                    
+                });
+            }
+            
+        }
+      });
+});
+
+app.post("/user", function(req,res){
+    var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;  
+    var user = JavascriptgetURLParameterValues("user", fullUrl);
+    var status = JavascriptgetURLParameterValues("status", fullUrl);
+    if(status=='false')
+    {
+        status='true';
+    }
+    else{status='false';}
+    pool.connect(function(err, client, done){
+        if(err){
+            return console.error('error fetching client from pool', err);
+        }
+        client.query("update users set status='"+status+"'where id="+user,function(err,result){
+            done();
+            if(err){
+                return console.error('error running query', err);
+            }
+            res.redirect("../user");
+        });
+    });
+});
+
+
+function JavascriptgetURLParameterValues(parameterName, url) {
+    if (!url) url = window.location.href;
+    parameterName= parameterName.replace(/[\[\]]/g, "\\><");
+    var regularExpression = 
+        new RegExp("[?&]" + parameterName + "(=([^&#]*)|&|#|$)"),
+    results = regularExpression.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}

@@ -3,20 +3,34 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Book Store Admin</title>
+    <title>Book Store</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#03a6f3">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800,900" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" type="text/css" href="../../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../../css/styles.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://kit.fontawesome.com/4e5ceaba89.js" crossorigin="anonymous"></script>   
-  <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+   
+    <style>
+        .avatar {
+            vertical-align: middle;
+            width: 27px;
+            height: 27px;
+            border-radius: 50%;
+        }
+        #img_cart{
+            width: 60px ;
+          height: auto;
+        }
+    </style>
 </head>
 
 <body>
@@ -36,21 +50,34 @@
         <div class="main-menu">
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
-                    <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="logo"></a>
+                    <a class="navbar-brand" href="../index.html/<%- char.id %>"><img src="/images/logo.png" alt="logo"></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
-                            <li class="navbar-item active">
-                                <a href="admin" class="nav-link">Book</a>
+                            <li class="navbar-item">
+                                <a href="../index.html/<%- char.id %>" class="nav-link">Home</a>
                             </li>
                             <li class="navbar-item">
-                                <a href="user" class="nav-link">User</a>
+                                <a href="../shop.html?user=<%- char.id %>" class="nav-link">Shop</a>
                             </li>
-                        
+                            <li class="navbar-item">
+                                <a href="../about.html/<%- char.id %>" class="nav-link">About</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="../faq.html/<%- char.id %>" class="nav-link">FAQ</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="../dashboard/<%- char.id %>"><img src="/upload/<%- char.image %>" alt="Avatar" class="avatar"></a>
+                                
+                            </li>
+                            <li class="navbar-item">
+                                <a href="../../login.html" class="nav-link">Logout</a>
+                            </li>
+                            
                         </ul>
-                        
+
                     </div>
                 </nav>
             </div>
@@ -59,80 +86,72 @@
     <section>
         <div class="container">
             <div class="title recomended-sec" >
-                <h2>Upload Book</h2>
+                <a href="/user/dashboard/<%- char.id %>"><h2>DashBoard</h2></a>  <a href=""><h2>BOOKSTORE CART</h2></a>
                 <hr>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <form action="add" method="POST" role="form" enctype="multipart/form-data">
-                        <div class="row">
-                            <div class="form-group col-md-4">
-                                <label for="form-title">Name:</label>
-                                <input type="text" class="form-control" id="name" name="name">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="form-title">Author:</label>
-                                <input type="text" class="form-control" id="author" name="author">
-                            </div>
-                            <div class="form-group col-md-2">
-                                <label for="form-title">Type:</label>
-                                <br>
-                                <select id="type" name="type">
-                                    <option value="New">New</option>
-                                    <option value="Best">Best</option>
-                                    <option value="Sale">Sale</option>
-                                </select>
+            
+            <div class="container mb-4">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"> </th>
+                                        <th scope="col">Sách</th>
+                                        <th scope="col">Loại</th>
+                                        <th scope="col" class="text-center">Giá</th>
+                                        <th> </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%var money = 0; for(var i=0; i<100;i++){ %>
+                                        <%data.rows.forEach(function(item){ %>
+                                            <% if(item.id==char.book[i]) {%>
+                                                <% money = parseInt(money) + parseInt(item.cur_cost); %>
+                                            <tr>
+                                                <td><img id="img_cart" src="/upload/<%= item.image %>" alt="img"></td>
+                                                <td><%= item.name %></td>
+                                                <td><%= item.categ %></td>
+                                                <td class="text-center"><%= item.cur_cost %></td>
+                                                <td class="text-right">
+                                                <a onclick="return confirm('Bạn chắc chắn muốn xóa sản phẩm?')" href="/buycart/delete?user=<%=char.id%>&product=<%= item.id %>"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button></a>
+                                                
+                                            </tr>
+                                            <%}%>
+                                        <%})%>
+                                    <%}%>
 
-                            </div>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td><strong>Tổng</strong></td>
+                                        <td class="text-center"><strong><%- money %></strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
+                    </div>
+                    <div class="col mb-2">
                         <div class="row">
-                            <div class="form-group col-md-4">
-                                <label for="form-key">Historical Cost:</label>
-                                <input type="number" min="0" class="form-control" id="pre_cost" name="pre_cost" value="0"> 
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="form-key">Price:</label>
-                                <input type="number" min="0" class="form-control" id="cur_cost" name="cur_cost" value="0">
-                            </div>
+                            <div class="col-sm-12  col-md-6">
+                                <a href="../shop.html?user=<%- char.id %>"><button class="btn btn-block btn-light">Tiếp tục Shopping</button></a>
                                 
-                            <div class="form-group col-md-4">
-                                <label for="form-title">Categ:</label>
-                                <br>
-                                <select id="categ" name="categ">
-                                    <option value="Kinh tế">Kinh tế</option>
-                                    <option value="Kỹ năng sống">Kỹ năng sống</option>
-                                    <option value="Kinh dị">Kinh dị</option>
-                                    <option value="Lịch sử">Lịch sử</option>
-                                    <option value="Tiểu thuyết">Tiểu thuyết</option>
-                                    <option value="Ngoại ngữ">Ngoại ngữ</option>
-                                    <option value="Thiếu nhi">Thiếu nhi</option>
-                                    <option value="Văn học">Văn học</option>
-                                    <option value="Y học">Y học</option>
-                                    <option value="Truyện tranh">Truyện tranh</option>
-                                </select>
-                               
+                            </div>
+                            <div class="col-sm-12 col-md-6 text-right">
+                                <a onclick="return confirm('Comming soon!')" href="#"><button class="btn btn-lg btn-block btn-success text-uppercase">Thanh toán</button></a>
+
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="form-descripton">Detail:</label>
-                            <textarea type="text" class="form-control" name="detail" id="detail" rows="5"></textarea>
-                        </div>
-                       
-                        <div class="form-group">
-                            <label for="">Image:</label>
-                            <input type="file" class="form-control" id="image" name="image">
-                        </div>
-                        <br>
-                        <a onclick="return confirm('Are you sure? Your changes will not be saved!')" href="admin"><button type="submit" class="btn btn-primary">Back</button></a> <button type="submit" class="btn btn-primary float-right">Submit</button>
-                        <!-- <div class="text-center"><button type="submit" class="btn btn-primary">Submit</button></div> -->
-                    </form>
-
-                    <br> 
+                    </div>
                 </div>
             </div>
-            </div>
-        </div>
+            </section>
+            
     </section>
+    
+    
+    
     <footer>
         <div class="container">
             <div class="row">
@@ -155,15 +174,15 @@
                     <div class="navigation">
                         <h4>Navigation</h4>
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="shop.html">Products</a></li>
+                            <li><a href="../index.html/<%- char.id %>">Home</a></li>
+                            <li><a href="../about.html/<%- char.id %>">About Us</a></li>
+                            <li><a href="../shop.html?user=<%- char.id %>">Products</a></li>
                         </ul>
                     </div>
                     <div class="navigation">
                         <h4>Help</h4>
                         <ul>
-                            <li><a href="faq.html">FAQ’s</a></li>
+                            <li><a href="../faq.html/<%- char.id %>">FAQ’s</a></li>
                         </ul>
                     </div>
                 </div>
@@ -216,4 +235,5 @@
 </body>
 
 </html>
+
 
