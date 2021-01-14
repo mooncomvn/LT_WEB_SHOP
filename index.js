@@ -31,7 +31,7 @@ var bodyParser = require('body-parser');
 var urlencodeParser = bodyParser.urlencoded({ extended:false });
 
 var multer  = require('multer');
-const { name } = require("ejs");
+const { name, render } = require("ejs");
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, './public/upload')
@@ -264,13 +264,17 @@ app.get("/product/:id", function(req,res){
         if(err){
             return console.error('error fetching client from pool', err);
         }
-        client.query('select * from book', function(err,count){
-            client.query('select * from book where id =' + id, function(err, result){
-                done();
-                if(err){
-                    return console.error('error running query', err);
-                }
-                res.render("product-single",{data:result.rows[0], data2:count});
+        client.query('select * from comment where id_product='+id, function(err, cmt){
+            client.query('select* from users', function(err, allchar){
+                    client.query('select * from book', function(err,count){
+                        client.query('select * from book where id =' + id, function(err, result){
+                            done();
+                            if(err){
+                                return console.error('error running query', err);
+                            }
+                            res.render("product-single",{data:result.rows[0], data2:count, allchar:allchar, cmt:cmt});
+                    });
+                });
             });
         });
         
@@ -294,6 +298,23 @@ app.get("/shop.html/:id", function(req,res){
     });
 });
 
+app.post("/comment/:id", function(req,res){
+    var id=req.params.id;
+    pool.connect(function(err, client, done){
+        if(err){
+            return console.error('error fetching client from pool', err);
+        }
+        var sql = "insert into comment (data,name, id_product) values ('"+req.body.detail+"','"+req.body.name+"','"+id+"')"
+        client.query(sql, function(err, result){
+            done();
+            if(err){
+                return console.error('error running query', err);
+            }
+            res.redirect("/product/"+id+"");
+        });
+        
+    });
+});
 
 //---------------------------USER---------------------------
 app.get("/user/dashboard/:id", function(req,res){
@@ -517,18 +538,21 @@ app.get("/product",function(req,res){
         if(err){
             return console.error('error fetching client from pool', err);
         }
-        client.query('select * from users where id='+user, function(err, char){
-            client.query('select * from book', function(err,count){
-                client.query('select * from book where id =' + product, function(err, result){
-                    done();
-                    if(err){
-                        return console.error('error running query', err);
-                    }
-                    res.render("product-single_user",{data:result.rows[0], data2:count, char:char.rows[0]});
+        client.query('select * from comment where id_product='+product, function(err, cmt){
+            client.query('select* from users', function(err, allchar){
+                client.query('select * from users where id='+user, function(err, char){
+                    client.query('select * from book', function(err,count){
+                        client.query('select * from book where id =' + product, function(err, result){
+                            done();
+                            if(err){
+                                return console.error('error running query', err);
+                            }
+                            res.render("product-single_user",{data:result.rows[0], data2:count, char:char.rows[0], allchar:allchar, cmt:cmt});
+                        });
+                    });
                 });
             });
         });
-        
     });
 
 });
@@ -615,6 +639,26 @@ app.get("/buycart/delete", function(req,res){
     });
 });
 
+app.post("/comment", function(req,res){
+    var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;  
+    var user = JavascriptgetURLParameterValues("user", fullUrl);
+    var product = JavascriptgetURLParameterValues("product", fullUrl);
+
+    pool.connect(function(err, client, done){
+        if(err){
+            return console.error('error fetching client from pool', err);
+        }
+        var sql = "insert into comment (data,id_user, id_product) values ('"+req.body.detail+"','"+user+"','"+product+"')"
+        client.query(sql, function(err, result){
+            done();
+            if(err){
+                return console.error('error running query', err);
+            }
+            res.redirect("/product/?user="+user+"&product="+product+"");
+        });
+        
+    });
+});
 
 // ---------------------------ADMIN-----------------------------
 app.get("/admin", function(req,res){
@@ -819,3 +863,7 @@ function JavascriptgetURLParameterValues(parameterName, url) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
+
+app.get("/cmt", function(req,res){
+    res.render("cmt.ejs");
+});

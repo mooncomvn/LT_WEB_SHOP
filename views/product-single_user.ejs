@@ -141,6 +141,66 @@
             </div>
         </div>
     </section>
+    <div class="container">
+        <div class="row">
+          <div class="col-sm-10 col-sm-offset-1" id="logout">
+              <div class="comment-tabs">
+                  <ul class="nav nav-tabs" role="tablist">
+                      <li class="active"><h4 class="reviews text-capitalize">Các Bình Luận:</h4></li>
+                  </ul>            
+                  <div class="tab-content">
+                    <ul class="media-list">
+                      <%cmt.rows.forEach(function(item){ %>
+                          <% if(item.id_product==data.id){%>
+                              <% if(item.id_user==undefined) {%>
+                                  <li class="media">
+                                      <div class="media-body">
+                                      <div class="well well-lg">
+                                          <h4 class="media-heading text-uppercase reviews font-weight-bold"><%-item.name%></h4>
+                                          <p class="media-comment">
+                                              <%-item.data%>
+                                          </p>
+                                      </div>              
+                                      </div>
+                                  </li>
+                                  <hr>
+                              <%} else{%>
+                              <%allchar.rows.forEach(function(item2){ %>
+                                  <% if(item.id_user==item2.id){%>
+                                      <li class="media">
+                                          <a class="pull-left" href="#">
+                                          <img class="avatar media-object img-circle" src="/upload/<%- item2.image %>" alt="profile">
+                                          </a>
+                                          <div class="media-body">
+                                          <div class="well well-lg">
+                                              <h4 class="media-heading text-uppercase reviews font-weight-bold"><%-item2.name%></h4>
+                                              <p class="media-comment">
+                                                  <%-item.data%>
+                                              </p>
+                                          </div>              
+                                          </div>
+                                      </li>
+                                      <hr>
+                                      <%}%>
+                                  <%})%>
+                                  <%}%>
+                                  <%}%>
+                      <%})%>
+                    </ul> 
+            </div>
+                  <form action="/comment?user=<%=char.id%>&product=<%=data.id%>" method="POST" role="form">
+                      <div class="form-group">
+                          <label for="exampleFormControlTextarea1">Nhập bình luận:</label>
+                          <textarea class="form-control" id="detail" name="detail" rows="3"></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-primary float-right">Đăng</button>
+                  </form>
+              </div>
+             
+          </div>
+        </div>
+    </div>
+    <br>    
     <footer>
         <div class="container">
             <div class="row">
