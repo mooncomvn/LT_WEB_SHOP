@@ -565,19 +565,26 @@ app.get("/addcart",function(req,res){
         if(err){
             return console.error('error fetching client from pool', err);
         }
-         client.query('select * from users where id='+user, function(err, char){
-             client.query('select * from book', function(err,data){
-                 client.query('select * from book where id =' + product, function(err, result){
-                    client.query("UPDATE users SET book = book || "+product+" where id="+user, function(err, char2){
-                    done();
-                    if(err){
-                        return console.error('error running query', err);
-                    }
-                    res.render("product-single_user",{data:result.rows[0], data2:data, char:char.rows[0]});
-                });
-            });
-         });
-         });
+        //  client.query('select * from users where id='+user, function(err, char){
+        //      client.query('select * from book', function(err,data){
+        //          client.query('select * from book where id =' + product, function(err, result){
+        //             client.query("UPDATE users SET book = book || "+product+" where id="+user, function(err, char2){
+        //             done();
+        //             if(err){
+        //                 return console.error('error running query', err);
+        //             }
+        //             res.render("product-single_user",{data:result.rows[0], data2:data, char:char.rows[0]});
+        //         });
+        //     });
+        //  });
+        // });
+        client.query("UPDATE users SET book = book || "+product+" where id="+user, function(err, result){
+                        done();
+                        if(err){
+                            return console.error('error running query', err);
+                        }
+                        res.redirect("/product/?user="+user+"&product="+product+"");
+                    });
         
     });
 });
