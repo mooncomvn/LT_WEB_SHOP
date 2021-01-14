@@ -6,8 +6,8 @@ app.set("view engine", "ejs"); //Sử dụng ejs
 app.set("views", "./views"); //Thư mục views để chứa các ejs...
 const bcrypt = require('bcrypt');
 const nodeExternals = require('webpack-node-externals');
-var http = require("http");
-var url = require('url');
+// var http = require("http");
+// var url = require('url');
 
 
 
