@@ -14,7 +14,7 @@ const nodeExternals = require('webpack-node-externals');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.listen(3000);
 
-var windowVar = global.sourceUrl;
+// var windowVar = global.sourceUrl;
 
 var pg = require("pg");
 var config = {
@@ -27,7 +27,7 @@ var config = {
     idleTimeoutMillis: 30000,
 };
 
-var bodyParser = require('body-parser');
+// var bodyParser = require('body-parser');
 var urlencodeParser = bodyParser.urlencoded({ extended:false });
 
 var multer  = require('multer');
@@ -565,19 +565,6 @@ app.get("/addcart",function(req,res){
         if(err){
             return console.error('error fetching client from pool', err);
         }
-        //  client.query('select * from users where id='+user, function(err, char){
-        //      client.query('select * from book', function(err,data){
-        //          client.query('select * from book where id =' + product, function(err, result){
-        //             client.query("UPDATE users SET book = book || "+product+" where id="+user, function(err, char2){
-        //             done();
-        //             if(err){
-        //                 return console.error('error running query', err);
-        //             }
-        //             res.render("product-single_user",{data:result.rows[0], data2:data, char:char.rows[0]});
-        //         });
-        //     });
-        //  });
-        // });
         client.query("UPDATE users SET book = book || "+product+" where id="+user, function(err, result){
                         done();
                         if(err){
@@ -870,7 +857,3 @@ function JavascriptgetURLParameterValues(parameterName, url) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
-
-app.get("/cmt", function(req,res){
-    res.render("cmt.ejs");
-});
